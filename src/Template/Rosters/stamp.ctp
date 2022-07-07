@@ -4,6 +4,7 @@
     echo '勤怠システム';
     $this->end();
     ?>
+    
     <div style="width:500px;margin-left:auto;margin-right:auto;margin: top 16%;">
         <?= $this->Flash->render() ?>
         <?= $this->Form->create() ?>

@@ -116,7 +116,6 @@ class RostersController extends AppController
      */
     public function stamp()
     {
-        // $this->viewBuilder()->setLayout('roster');
 
         $account = $this->request->session()->read('Auth.User.account');
 
