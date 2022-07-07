@@ -116,19 +116,21 @@ class RostersController extends AppController
      */
     public function stamp()
     {
-        $this->viewBuilder()->setLayout('roster');
+        // $this->viewBuilder()->setLayout('roster');
+
+        $account = $this->request->session()->read('Auth.User.account');
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             //送信データ取得
-            $account = $this->request->getData('account');
+            // $account = $this->request->getData('account');
             $kubun = $this->request->getData('kubun');
 
-            // accountからユーザーID取得
+            //accountからユーザーID取得
             $this->Users = $this->loadModel('Users');
             $user = $this->Users->find()->where(['account' => $account])->first();
 
-            if (!$user) {
-                $this->Flash->error('入力されたアカウントが存在しません。');
+            if (!$account) {
+                $this->Flash->error('アカウント情報がありません');
                 var_dump($user);
                 return;
             }
