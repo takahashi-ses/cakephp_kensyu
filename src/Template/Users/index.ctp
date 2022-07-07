@@ -1,7 +1,11 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('メニュー') ?></li>
+        <?php if ($this->request->session()->read("Auth.User.role") == 2):?>
+        <li><?= $this->Html->link(__('勤怠管理'), ["controller"=>"rosters" ,'action' => 'index']) ?></li>
+        <?php else: ?>
         <li><?= $this->Html->link(__('勤怠管理'), ["controller"=>"rosters" ,'action' => 'stamp']) ?></li>
+        <?php endif; ?>
         <li><?= $this->Html->link(__('業務報告'), ['controller' => 'Report', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('会員情報'), ['controller' => 'Report', 'action' => 'add']) ?></li>
         <?php if ($this->request->session()->read("Auth.User.role") == 2):?>
