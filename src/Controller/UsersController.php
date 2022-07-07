@@ -53,6 +53,15 @@ class UsersController extends AppController
             'contain' => ['Report'],
         ]);
 
+        if ($this->request->session()->read("Auth.User.id") == $user->id)
+        {
+            $users = $this->paginate($this->Users);
+
+            $this->set(compact('users'));
+        } else {
+            return $this->redirect(["action" => "index"]);
+        }
+
         $this->set('user', $user);
     }
 
@@ -71,7 +80,7 @@ class UsersController extends AppController
                 $user = $this->Users->patchEntity($user, $this->request->getData());
                 if ($this->Users->save($user)) {
                     $this->Flash->success(__('The user has been saved.'));
-    
+
                     return $this->redirect(['action' => 'index']);
                 }
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
@@ -82,7 +91,7 @@ class UsersController extends AppController
         }
     }
 
-        
+
 
     /**
      * Edit method
