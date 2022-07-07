@@ -26,7 +26,12 @@
             echo $this->Form->control('address');
             echo $this->Form->control('created_user');
             echo $this->Form->control('modified_user');
-            echo $this->Form->control('role');
+            echo $this->Form->label("role", "Role");
+            echo $this->Form->select('role', [
+                ["value" => 1, "text"=>"user"],
+                ["value" => 2, "text"=>"admin"],
+                ],
+                ["id" => "role"] );
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
