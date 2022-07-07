@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\I18n\FrozenTime;
+use Cake\ORM\Table;
 
 /**
  * Rosters Controller
@@ -107,5 +109,81 @@ class RostersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * 打刻
+     */
+    public function stamp()
+    {
+        $this->viewBuilder()->setLayout('roster');
+
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            //送信データ取得
+            $account = $this->request->getData('account');
+            $kubun = $this->request->getData('kubun');
+
+            // accountからユーザーID取得
+            $this->Users = $this->loadModel('Users');
+            $user = $this->Users->find()->where(['account' => $account])->first();
+
+            if (!$user) {
+                $this->Flash->error('入力されたアカウントが存在しません。');
+                var_dump($user);
+                return;
+            }
+
+            // 当日のデータを取得
+            $now = new FrozenTime();
+            $roster = $this->Rosters->find()
+                ->where(['users_id' => $user->id])
+                ->where(['start_time >=' =>  $now->i18nFormat('yyyy-MM-dd') . ' 00:00:00'])
+                ->where(['start_time <' =>  $now->addDay(1)->i18nFormat('yyyy-MM-dd') . ' 00:00:00'])
+                ->order(['created' => 'desc'])
+                ->first();
+
+            // 出退勤済みの当日データが既にある場合は打刻しない
+            if (isset($roster)) {
+                if ($roster->start_time != NULL and $roster->end_time != NULL) {
+                    $this->Flash->error('既に出退勤済みです。');
+                    return;
+                }
+            }
+
+            // エンティティにpatchするための配列
+            $tmpArr = array();
+            $msg = '';
+
+            //ユーザーIDをセット
+            $tmpArr['users_id'] = $user->id;
+
+            // 区分から出勤、退勤時刻を判断し日時を取得する
+            if ($kubun === 'sta') {
+                if (isset($roster)) {
+                    $this->Flash->error('既に出勤しています。');
+                    return;
+                } else {
+                    $tmpArr['start_time'] = $now;
+                    $msg = 'おはようございます。';
+                    $roster = $this->Rosters->newEntity();
+                }
+            } elseif ($kubun === 'end') {
+                if (isset($roster)) {
+                    $tmpArr['end_time'] = $now;
+                    $msg = 'お疲れさまでした。';
+                } else {
+                    $this->Flash->error('まだ出勤していません。');
+                    return;
+                }
+            }
+
+            // エンティティに時刻をセットする
+            $roster = $this->Rosters->patchEntity($roster, $tmpArr);
+            if ($this->Rosters->save($roster)) {
+                $this->Flash->success($msg);
+            } else {
+                $this->Flash->error('打刻でエラーが発生しました。');
+            }
+        }
     }
 }
