@@ -134,7 +134,7 @@ class UsersController extends AppController
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl('rosters/stamp/'));
+                return $this->redirect($this->Auth->redirectUrl("users/index"));
             }
             $this->Flash->error(__('ユーザー名またはパスワードが違います。'));
         }
