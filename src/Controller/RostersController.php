@@ -24,7 +24,26 @@ class RostersController extends AppController
         $this->paginate = [
             'contain' => ['Users'],
         ];
-        $rosters = $this->paginate($this->Rosters);
+        $rosters = $this->paginate($this->Rosters
+            ->find()
+            ->DISTINCT("name"));
+
+
+        $this->set(compact('rosters'));
+    }
+
+    public function list($id = "")
+    {
+        
+
+        $rosters = $this->paginate = [
+            'contain' => ['Users'],
+        ];
+
+        $rosters = $this->paginate($this->Rosters
+            ->find("all",
+                ["conditions" => ["users_id" => $id]]));
+
 
         $this->set(compact('rosters'));
     }
@@ -45,26 +64,34 @@ class RostersController extends AppController
         $this->set('roster', $roster);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $roster = $this->Rosters->newEntity();
-        if ($this->request->is('post')) {
-            $roster = $this->Rosters->patchEntity($roster, $this->request->getData());
-            if ($this->Rosters->save($roster)) {
-                $this->Flash->success(__('The roster has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The roster could not be saved. Please, try again.'));
-        }
-        $users = $this->Rosters->Users->find('list', ['limit' => 200]);
-        $this->set(compact('roster', 'users'));
-    }
+    //stmpメソッドがあるため未使用
+    // /**
+    //  * Add method
+    //  *
+    //  * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
+    //  */
+    // public function add()
+    // {
+
+    //     if ($this->request->session()->read("Auth.User.role") == 2)
+    //     {
+    //         $roster = $this->Rosters->newEntity();
+    //         if ($this->request->is('post')) {
+    //             $roster = $this->Rosters->patchEntity($roster, $this->request->getData());
+    //             if ($this->Rosters->save($roster)) {
+    //                 $this->Flash->success(__('The roster has been saved.'));
+
+    //                 return $this->redirect(['action' => 'index']);
+    //             }
+    //             $this->Flash->error(__('The roster could not be saved. Please, try again.'));
+    //         }
+    //         $users = $this->Rosters->Users->find('list', ['limit' => 200]);
+    //         $this->set(compact('roster', 'users'));
+    //     } else {
+    //         return $this->redirect(["controller" => "users", "action" => "index"]);
+    //     }
+    // }
 
     /**
      * Edit method
