@@ -2,12 +2,12 @@
     <ul class="side-nav">
         <li class="heading"><?= __('メニュー') ?></li>
         <?php if ($this->request->session()->read("Auth.User.role") == 2):?>
-        <li><?= $this->Html->link(__('勤怠管理'), ["controller"=>"rosters" ,'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('勤怠修正'), ["controller"=>"rosters" ,'action' => 'index']) ?></li>
         <?php else: ?>
         <li><?= $this->Html->link(__('勤怠管理'), ["controller"=>"rosters" ,'action' => 'stamp']) ?></li>
         <?php endif; ?>
         <li><?= $this->Html->link(__('業務報告'), ['controller' => 'Report', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('会員情報'), ['controller' => 'Report', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('従業員情報'), ['controller' => 'Report', 'action' => 'add']) ?></li>
         <?php if ($this->request->session()->read("Auth.User.role") == 2):?>
         <li><?= $this->Html->link(__('アカウント新規作成'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('ユーザーリスト'), ['action' => 'list']) ?></li>
