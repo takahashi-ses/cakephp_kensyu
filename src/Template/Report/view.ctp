@@ -11,8 +11,11 @@
         <li><?= $this->Form->postLink(__('Delete Report'), ['action' => 'delete', $report->id], ['confirm' => __('Are you sure you want to delete # {0}?', $report->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Report'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Report'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
+        <?php if ($this->request->session()->read("Auth.User.role") == 2):?>
+        <li><?= $this->Html->link(__('アカウント新規作成'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('ユーザーリスト'), ['action' => 'list']) ?></li>
+        <?php endif; ?>
+        <li><?= $this->Html->link(__('HOME'), ['controller' => 'Users', 'action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="report view large-9 medium-8 columns content">
@@ -26,10 +29,10 @@
             <th scope="row"><?= __('Comment') ?></th>
             <td><?= h($report->comment) ?></td>
         </tr>
-        <tr>
+        <!-- <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($report->id) ?></td>
-        </tr>
+        </tr> -->
         <tr>
             <th scope="row"><?= __('Created') ?></th>
             <td><?= h($report->created) ?></td>

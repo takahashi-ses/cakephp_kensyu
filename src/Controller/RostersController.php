@@ -121,7 +121,6 @@ class RostersController extends AppController
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             //送信データ取得
-            // $account = $this->request->getData('account');
             $kubun = $this->request->getData('kubun');
 
             //accountからユーザーID取得
@@ -130,7 +129,7 @@ class RostersController extends AppController
 
             if (!$account) {
                 $this->Flash->error('アカウント情報がありません');
-                var_dump($user);
+                // var_dump($user);
                 return;
             }
 
@@ -186,5 +185,9 @@ class RostersController extends AppController
                 $this->Flash->error('打刻でエラーが発生しました。');
             }
         }
+
+        $rosters = $this->Rosters->find('all', ['limit' => 5]);
+        $this->set(compact('rosters'));
     }
+
 }

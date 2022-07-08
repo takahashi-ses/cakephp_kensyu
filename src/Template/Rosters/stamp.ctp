@@ -15,17 +15,31 @@
 </nav>
 
 <div class="rosters form" style="text-align:center;">
-    <?php
-    $this->start('title');
-    echo '勤怠システム';
-    $this->end();
-    ?>
-
-    <div style="width:500px;margin-left:auto;margin-right:auto;margin: top 16%;">
+    <div>
         <?= $this->Flash->render() ?>
+        <h3 id="date"></h3>
+        <h1 id="realtime"></h1>
         <?= $this->Form->create() ?>
         <?= $this->Form->button('出勤', ['value' => 'sta', 'name' => 'kubun']); ?>
         <?= $this->Form->button('退勤', ['value' => 'end', 'name' => 'kubun']); ?>
         <?= $this->Form->end() ?>
     </div>
+
+    <p style="margin-top: 64px;">最近の打刻</p>
+    <table cellpadding="0" cellspacing="0" style="margin-left: 40%; width: 50%">
+        <thead>
+            <tr>
+                <th><?= $this->Paginator->sort('start_time') ?></th>
+                <th><?= $this->Paginator->sort('end_time') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($rosters as $roster): ?>
+                <tr>
+                    <td><?= h($roster->start_time) ?></td>
+                    <td><?= h($roster->end_time) ?></td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
 </div>
