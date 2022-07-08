@@ -21,12 +21,41 @@ class RostersController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Users'],
-        ];
-        $rosters = $this->paginate($this->Rosters);
+        if ($this->request->session()->read("Auth.User.role") == 2)
+        {
+            $this->paginate = [
+                'contain' => ['Users'],
+            ];
+            $rosters = $this->paginate($this->Rosters
+                ->find()
+                ->DISTINCT("name"));
 
-        $this->set(compact('rosters'));
+
+            $this->set(compact('rosters'));
+        } else {
+            return $this->redirect(["controller" => "users", "action" => "index"]);
+        }
+    }
+
+    public function list($id = null)
+    {
+        
+        if ($this->request->session()->read("Auth.User.role") == 2 || $this->request->session()->read("Auth.User.id") == $id)
+        {
+            $rosters = $this->paginate = [
+                'contain' => ['Users'],
+            ];
+
+            $rosters = $this->paginate($this->Rosters
+                ->find("all",
+                    ["conditions" => ["users_id" => $id]]));
+
+
+            $this->set(compact('rosters'));
+
+        } else {
+            return $this->redirect(["controller" => "Users","action" => "index"]);
+        }       
     }
 
     /**
@@ -45,26 +74,34 @@ class RostersController extends AppController
         $this->set('roster', $roster);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $roster = $this->Rosters->newEntity();
-        if ($this->request->is('post')) {
-            $roster = $this->Rosters->patchEntity($roster, $this->request->getData());
-            if ($this->Rosters->save($roster)) {
-                $this->Flash->success(__('The roster has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The roster could not be saved. Please, try again.'));
-        }
-        $users = $this->Rosters->Users->find('list', ['limit' => 200]);
-        $this->set(compact('roster', 'users'));
-    }
+    //stmpメソッドがあるため未使用
+    // /**
+    //  * Add method
+    //  *
+    //  * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
+    //  */
+    // public function add()
+    // {
+
+    //     if ($this->request->session()->read("Auth.User.role") == 2)
+    //     {
+    //         $roster = $this->Rosters->newEntity();
+    //         if ($this->request->is('post')) {
+    //             $roster = $this->Rosters->patchEntity($roster, $this->request->getData());
+    //             if ($this->Rosters->save($roster)) {
+    //                 $this->Flash->success(__('The roster has been saved.'));
+
+    //                 return $this->redirect(['action' => 'index']);
+    //             }
+    //             $this->Flash->error(__('The roster could not be saved. Please, try again.'));
+    //         }
+    //         $users = $this->Rosters->Users->find('list', ['limit' => 200]);
+    //         $this->set(compact('roster', 'users'));
+    //     } else {
+    //         return $this->redirect(["controller" => "users", "action" => "index"]);
+    //     }
+    // }
 
     /**
      * Edit method
@@ -75,6 +112,8 @@ class RostersController extends AppController
      */
     public function edit($id = null)
     {
+        if ($this->request->session()->read("Auth.User.role") == 2)
+        {
         $roster = $this->Rosters->get($id, [
             'contain' => [],
         ]);
@@ -89,6 +128,10 @@ class RostersController extends AppController
         }
         $users = $this->Rosters->Users->find('list', ['limit' => 200]);
         $this->set(compact('roster', 'users'));
+
+        } else {
+            return $this->redirect(["controller" => "Users","action" => "index"]);
+        }     
     }
 
     /**
@@ -100,15 +143,21 @@ class RostersController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
-        $roster = $this->Rosters->get($id);
-        if ($this->Rosters->delete($roster)) {
-            $this->Flash->success(__('The roster has been deleted.'));
-        } else {
-            $this->Flash->error(__('The roster could not be deleted. Please, try again.'));
-        }
+        if ($this->request->session()->read("Auth.User.role") == 2)
+        {
+            $this->request->allowMethod(['post', 'delete']);
+            $roster = $this->Rosters->get($id);
+            if ($this->Rosters->delete($roster)) {
+                $this->Flash->success(__('The roster has been deleted.'));
+            } else {
+                $this->Flash->error(__('The roster could not be deleted. Please, try again.'));
+            }
 
-        return $this->redirect(['action' => 'index']);
+            return $this->redirect(['action' => 'index']);
+            
+        } else {
+            return $this->redirect(["controller" => "Users","action" => "index"]);
+        }     
     }
 
     /**
