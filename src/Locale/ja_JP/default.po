@@ -207,7 +207,7 @@ msgstr "詳細情報"
 #: Template/Users/list.ctp:65
 #: Template/Users/view.ctp:105
 msgid "Edit"
-msgstr "情報変更"
+msgstr "変更"
 
 #: Template/Report/index.ctp:46
 #: Template/Rosters/index.ctp:53
@@ -389,7 +389,7 @@ msgstr "削除"
 #: Template/Rosters/view.ctp:62
 #: Template/Users/view.ctp:82
 msgid "Modified"
-msgstr "更新"
+msgstr "更新日"
 
 #: Template/Users/add.ctp:11
 #: Template/Users/list.ctp:13
@@ -416,7 +416,7 @@ msgstr "従業員名"
 
 #: Template/Users/login.ctp:5
 msgid "Please enter your username and password"
-msgstr "ユーザネームとパスワードを入力してください"
+msgstr "アカウント名とパスワードを入力してください"
 
 #: Template/Users/login.ctp:9
 msgid "Login"
