@@ -39,7 +39,7 @@ class RostersController extends AppController
 
     public function list($id = null)
     {
-        
+
         if ($this->request->session()->read("Auth.User.role") == 2 || $this->request->session()->read("Auth.User.id") == $id)
         {
             $rosters = $this->paginate = [
@@ -55,7 +55,7 @@ class RostersController extends AppController
 
         } else {
             return $this->redirect(["controller" => "Users","action" => "index"]);
-        }       
+        }
     }
 
     /**
@@ -131,7 +131,7 @@ class RostersController extends AppController
 
         } else {
             return $this->redirect(["controller" => "Users","action" => "index"]);
-        }     
+        }
     }
 
     /**
@@ -154,10 +154,10 @@ class RostersController extends AppController
             }
 
             return $this->redirect(['action' => 'index']);
-            
+
         } else {
             return $this->redirect(["controller" => "Users","action" => "index"]);
-        }     
+        }
     }
 
     /**
@@ -167,6 +167,7 @@ class RostersController extends AppController
     {
 
         $account = $this->request->session()->read('Auth.User.account');
+        $id = $this->request->session()->read("Auth.User.id");
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             //送信データ取得
@@ -195,6 +196,8 @@ class RostersController extends AppController
             if (isset($roster)) {
                 if ($roster->start_time != NULL and $roster->end_time != NULL) {
                     $this->Flash->error('既に出退勤済みです。');
+                    $rosters = $this->paginate($this->Rosters->find('all')->where(['users_id' => $id])->limit('5'));
+                    $this->set(compact('rosters', 'id'));
                     return;
                 }
             }
@@ -210,6 +213,8 @@ class RostersController extends AppController
             if ($kubun === 'sta') {
                 if (isset($roster)) {
                     $this->Flash->error('既に出勤しています。');
+                    $rosters = $this->paginate($this->Rosters->find('all')->where(['users_id' => $id])->limit('5'));
+                    $this->set(compact('rosters', 'id'));
                     return;
                 } else {
                     $tmpArr['start_time'] = $now;
@@ -222,6 +227,8 @@ class RostersController extends AppController
                     $msg = 'お疲れさまでした。';
                 } else {
                     $this->Flash->error('まだ出勤していません。');
+                    $rosters = $this->paginate($this->Rosters->find('all')->where(['users_id' => $id])->limit('5'));
+                    $this->set(compact('rosters', 'id'));
                     return;
                 }
             }
@@ -233,10 +240,10 @@ class RostersController extends AppController
             } else {
                 $this->Flash->error('打刻でエラーが発生しました。');
             }
+
         }
-
-        $rosters = $this->Rosters->find('all', ['limit' => 5]);
-        $this->set(compact('rosters'));
+        $rosters = $this->paginate($this->Rosters->find('all')->where(['users_id' => $id])->limit('5'));
+        $this->set(compact('rosters', 'id'));
+        // var_dump($rosters);
     }
-
 }
