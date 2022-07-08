@@ -24,7 +24,9 @@
                 <!-- <th scope="col"><?= $this->Paginator->sort('users_id') ?></th> -->
                 <th scope="col"><?= $this->Paginator->sort('start_time') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('end_time') ?></th>
+                <?php if ($this->request->session()->read("Auth.User.role") == 2):?>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <?php endif;?>
             </tr>
         </thead>
         <tbody>
@@ -34,9 +36,11 @@
                 <td><?= h($roster->start_time) ?></td>
                 <td><?= h($roster->end_time) ?></td>
                 <td class="actions">
+                <?php if ($this->request->session()->read("Auth.User.role") == 2):?>
                     <?= $this->Html->link(__('View'), ['action' => 'view', $roster->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $roster->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $roster->id], ['confirm' => __('Are you sure you want to delete # {0}?', $roster->id)]) ?>
+                <?php endif; ?>
                 </td>
             </tr>
             <?php endforeach; ?>
