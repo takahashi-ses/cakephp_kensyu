@@ -11,7 +11,21 @@ use App\Controller\AppController;
  * @method \App\Model\Entity\Report[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class ReportController extends AppController
-{
+{   
+
+    public function isAuthorized($user) {
+
+
+        // var_dump($user);
+        $action = $this->request->getParam("action");
+        $userid = (int)$this->request->getParam("pass.0");
+        if (in_array($action, ["edit", "view", "delete", "add"])) {
+            if ($userid == $user["id"]) {
+                return true;
+            }
+        }
+        return parent::isAuthorized($user);
+    }
     /**
      * Index method
      *

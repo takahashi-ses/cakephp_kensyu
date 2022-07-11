@@ -14,6 +14,27 @@ use Cake\ORM\Table;
  */
 class RostersController extends AppController
 {
+
+    public function isAuthorized($user) {
+
+
+        // var_dump($user);
+        $action = $this->request->getParam("action");
+        if (in_array($action, ["stamp"])) {
+            return true;
+        }
+
+
+        $userid = (int)$this->request->getParam("pass.0");
+        if (in_array($action, ["view", "list"])) {
+            if ($userid == $user["id"]) {
+                return true;
+            }
+        }
+        return parent::isAuthorized($user);
+    }
+
+
     /**
      * Index method
      *
@@ -21,8 +42,6 @@ class RostersController extends AppController
      */
     public function index()
     {
-        if ($this->request->session()->read("Auth.User.role") == 2)
-        {
             $this->paginate = [
                 'contain' => ['Users'],
             ];
@@ -32,16 +51,10 @@ class RostersController extends AppController
 
 
             $this->set(compact('rosters'));
-        } else {
-            return $this->redirect(["controller" => "users", "action" => "index"]);
-        }
     }
 
     public function list($id = null)
     {
-
-        if ($this->request->session()->read("Auth.User.role") == 2 || $this->request->session()->read("Auth.User.id") == $id)
-        {
             $rosters = $this->paginate = [
                 'contain' => ['Users'],
             ];
@@ -53,9 +66,6 @@ class RostersController extends AppController
 
             $this->set(compact('rosters'));
 
-        } else {
-            return $this->redirect(["controller" => "Users","action" => "index"]);
-        }
     }
 
     /**
@@ -112,8 +122,6 @@ class RostersController extends AppController
      */
     public function edit($id = null)
     {
-        if ($this->request->session()->read("Auth.User.role") == 2)
-        {
         $roster = $this->Rosters->get($id, [
             'contain' => [],
         ]);
@@ -128,10 +136,6 @@ class RostersController extends AppController
         }
         $users = $this->Rosters->Users->find('list', ['limit' => 200]);
         $this->set(compact('roster', 'users'));
-
-        } else {
-            return $this->redirect(["controller" => "Users","action" => "index"]);
-        }
     }
 
     /**
@@ -143,8 +147,6 @@ class RostersController extends AppController
      */
     public function delete($id = null)
     {
-        if ($this->request->session()->read("Auth.User.role") == 2)
-        {
             $this->request->allowMethod(['post', 'delete']);
             $roster = $this->Rosters->get($id);
             if ($this->Rosters->delete($roster)) {
@@ -155,9 +157,6 @@ class RostersController extends AppController
 
             return $this->redirect(['action' => 'index']);
 
-        } else {
-            return $this->redirect(["controller" => "Users","action" => "index"]);
-        }
     }
 
     /**
