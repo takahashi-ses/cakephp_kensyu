@@ -47,6 +47,7 @@ class AppController extends Controller
         $this->loadComponent('Flash');
 
         $this->loadComponent('Auth', [
+            'authorize' => 'Controller',
             'authenticate' => [
                 'Form' => [
                     'fields' => [
@@ -71,4 +72,20 @@ class AppController extends Controller
          */
         //$this->loadComponent('Security');
     }
+
+    public function isAuthorized($user)
+    {
+        if(isset($user["role"]) && $user["role"] == 2) {
+            // var_dump($user);
+            // echo "aaaaaaaaaaaa";
+            return true;
+            
+        } 
+        
+        // var_dump($user);
+        // echo "iiiiiiiiiiiiiii";
+        return false;
+    }
+
+
 }

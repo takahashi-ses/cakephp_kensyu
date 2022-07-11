@@ -18,6 +18,29 @@ class UsersController extends AppController
         parent::initialize();
         $this->Auth->allow('logout');
     }
+
+
+    public function isAuthorized($user) {
+
+
+        // var_dump($user);
+        $action = $this->request->getParam("action");
+        if (in_array($action, ["login", "index"])) {
+            return true;
+        }
+
+
+        $userid = (int)$this->request->getParam("pass.0");
+        if (in_array($action, ["edit", "view"])) {
+            if ($userid == $user["id"]) {
+                return true;
+            }
+        }
+        
+        return parent::isAuthorized($user);
+    }
+
+
     /**
      * Index method
      *
@@ -25,19 +48,13 @@ class UsersController extends AppController
      */
     public function list()
     {
-        if ($this->request->session()->read("Auth.User.role") == 2)
-        {
             $users = $this->paginate($this->Users);
 
             $this->set(compact('users'));
-        } else {
-            return $this->redirect(["action" => "index"]);
-        }
     }
 
     public function index()
     {
-
     }
 
     /**
@@ -53,16 +70,13 @@ class UsersController extends AppController
             'contain' => ['Report'],
         ]);
 
-        if ($this->request->session()->read("Auth.User.id") == $user->id)
-        {
             $users = $this->paginate($this->Users);
 
-            $this->set(compact('users'));
-        } else {
-            return $this->redirect(["action" => "index"]);
-        }
+            $this->set(compact('users'));  
 
         $this->set('user', $user);
+
+        
     }
 
     /**
@@ -72,23 +86,17 @@ class UsersController extends AppController
      */
     public function add()
     {
+        $user = $this->Users->newEntity();
+        if ($this->request->is('post')) {
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('The user has been saved.'));
 
-        if ($this->request->session()->read("Auth.User.role") == 2)
-        {
-            $user = $this->Users->newEntity();
-            if ($this->request->is('post')) {
-                $user = $this->Users->patchEntity($user, $this->request->getData());
-                if ($this->Users->save($user)) {
-                    $this->Flash->success(__('The user has been saved.'));
-
-                    return $this->redirect(['action' => 'index']);
-                }
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                return $this->redirect(['action' => 'index']);
             }
-            $this->set(compact('user'));
-        } else {
-            return $this->redirect(["action" => "index"]);
+            $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
+        $this->set(compact('user'));
     }
 
 
@@ -102,11 +110,15 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
+
         $user = $this->Users->get($id, [
             'contain' => [],
         ]);
+        
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
+            var_dump($user);
+            exit();
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
@@ -127,8 +139,6 @@ class UsersController extends AppController
     public function delete($id = null)
     {
 
-        if ($this->request->session()->read("Auth.User.role") == 2)
-        {
             $this->request->allowMethod(['post', 'delete']);
             $user = $this->Users->get($id);
             if ($this->Users->delete($user)) {
@@ -136,11 +146,8 @@ class UsersController extends AppController
             } else {
                 $this->Flash->error(__('The user could not be deleted. Please, try again.'));
             }
-
             return $this->redirect(['action' => 'index']);
-        } else {
-            return $this->redirect(["action" => "index"]);
-        }
+
     }
 
     public function login()
@@ -159,4 +166,6 @@ class UsersController extends AppController
     {
         return $this->redirect($this->Auth->logout());
     }
+
+
 }

@@ -199,7 +199,7 @@ msgstr "業務報告"
 #: Template/Users/view.ctp:104
 #: View/Helper/PaginatorHelper.php:1271
 msgid "View"
-msgstr "詳細情報"
+msgstr "詳細"
 
 #: Template/Report/index.ctp:37
 #: Template/Rosters/index.ctp:44
@@ -476,7 +476,7 @@ msgstr "内部でエラーが発生しました。"
 
 #: Controller/Component/AuthComponent.php:502
 msgid "You are not authorized to access that location."
-msgstr "その場所へのアクセスは許可されていません。"
+msgstr "ページにアクセスできませんでした。"
 
 #: Controller/Component/CsrfComponent.php:181
 #: Http/Middleware/CsrfProtectionMiddleware.php:228
