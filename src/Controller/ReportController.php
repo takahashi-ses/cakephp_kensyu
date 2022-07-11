@@ -19,12 +19,21 @@ class ReportController extends AppController
      */
     public function index()
     {
+        $id = $this->request->session()->read("Auth.User.id");
+
         $this->paginate = [
             'contain' => ['Users'],
         ];
-        $report = $this->paginate($this->Report);
-
-        $this->set(compact('report'));
+        $reports = $this->paginate($this->Report);
+        $myReports = $this->paginate($this->Report->find('all')->where(['user_id' => $id]));
+        $account = $this->request->session()->read('Auth.User.account');
+        $this->Users = $this->loadModel('Users');
+        $user = $this->Users->find()->where(['account' => $account])->first();
+        if ($this->request->session()->read("Auth.User.role") == 2) {
+            $this->set(compact('reports', 'user'));
+        } else {
+            $this->set(compact('myReports', 'user'));
+        }
     }
 
     /**
