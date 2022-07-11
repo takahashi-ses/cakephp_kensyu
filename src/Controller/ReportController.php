@@ -60,8 +60,11 @@ class ReportController extends AppController
             }
             $this->Flash->error(__('The report could not be saved. Please, try again.'));
         }
-        $users = $this->Report->Users->find('list', ['limit' => 200]);
-        $this->set(compact('report', 'users'));
+
+        $account = $this->request->session()->read('Auth.User.account');
+        $this->Users = $this->loadModel('Users');
+        $user = $this->Users->find()->where(['account' => $account])->first();
+        $this->set(compact('report', 'user'));
     }
 
     /**

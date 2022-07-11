@@ -70,10 +70,10 @@
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($user->id) ?></td>
         </tr> -->
-        <tr>
+        <!-- <tr>
             <th scope="row"><?= __('Role') ?></th>
             <td><?= $this->Number->format($user->role) ?></td>
-        </tr>
+        </tr> -->
         <tr>
             <th scope="row"><?= __('Created') ?></th>
             <td><?= h($user->created) ?></td>

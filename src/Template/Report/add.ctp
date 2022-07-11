@@ -15,10 +15,11 @@
 <div class="report form large-9 medium-8 columns content">
     <?= $this->Form->create($report) ?>
     <fieldset>
-        <legend><?= __('Add Report') ?></legend>
+        <legend><?= __('Report') ?></legend>
         <?php
-            echo $this->Form->control('user_id', ['options' => $users]);
-            echo $this->Form->control('comment');
+            echo "報告者 : " . $user->name;
+            echo $this->Form->hidden('user_id', ['value' => $user->id]);
+            echo $this->Form->textarea('comment');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
