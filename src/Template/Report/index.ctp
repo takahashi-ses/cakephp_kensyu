@@ -32,7 +32,7 @@
                 <?php foreach ($reports as $report): ?>
                 <tr>
                     <td><?= $this->Number->format($report->id) ?></td>
-                    <td><?= $report->has('user') ? $this->Html->link($report->user->name, ['controller'    =>'Users', 'action' => 'view', $report->user->id]) : '' ?></td>
+                    <td><?= $report->has('user') ? $this->Html->link($report->user->name, ['controller' => 'Users', 'action' => 'view', $report->user->id]) : '' ?></td>
                     <td><?= h($report->comment) ?></td>
                     <td><?= h($report->created) ?></td>
                     <td class="actions">
