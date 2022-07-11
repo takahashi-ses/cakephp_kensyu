@@ -23,7 +23,12 @@
     <fieldset>
         <legend><?= __('Edit Report') ?></legend>
         <?php
-            echo $this->Form->control('user_id', ['options' => $users]);
+            if ($this->request->session()->read("Auth.User.role") == 2) {
+                echo $this->Form->control('user_id', ['options' => $users]);
+            } else {
+                echo "報告者 : " . $users->name;
+                echo $this->Form->hidden('user_id', ['value' => $users->id]);
+            }
             echo $this->Form->control('comment');
         ?>
     </fieldset>

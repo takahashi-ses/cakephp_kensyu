@@ -5,11 +5,12 @@
         <li class="heading"><?= __('メニュー') ?></li>
         <?php if ($this->request->session()->read("Auth.User.role") == 2):?>
         <li><?= $this->Html->link(__('勤怠管理'), ["controller"=>"rosters" ,'action' => 'index']) ?></li>
-        <?php else: ?>
-        <li><?= $this->Html->link(__('勤怠入力'), ["controller"=>"rosters" ,'action' => 'stamp']) ?></li>
-        <li><?= $this->Html->link(__('勤怠管理'), ["controller"=>"rosters" ,'action' => "list/$id"]) ?></li>
-        <?php endif; ?>
         <li><?= $this->Html->link(__('業務報告'), ['controller' => 'Report', 'action' => 'index']) ?></li>
+        <?php else: ?>
+        <li><?= $this->Html->link(__('勤怠入力'), ["controller"=>"rosters" ,'action' => 'stamp']) ?>< ?></li>
+        <li><?= $this->Html->link(__('業務報告'), ['controller' => 'Report', 'action' => 'add']) ?></li>/li>
+        <li><?= $this->Html->link(__('勤怠管理'), ["controller"=>"rosters" ,'action' => 'list', $id])
+        <?php endif; ?>
         <li><?= $this->Html->link(__('会員情報'), ['controller' => 'Users', 'action' => "view/$id"]) ?></li>
         <?php if ($this->request->session()->read("Auth.User.role") == 2):?>
         <li><?= $this->Html->link(__('アカウント新規作成'), ['action' => 'add']) ?></li>
