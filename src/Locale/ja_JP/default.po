@@ -476,7 +476,7 @@ msgstr "内部でエラーが発生しました。"
 
 #: Controller/Component/AuthComponent.php:502
 msgid "You are not authorized to access that location."
-msgstr "その場所へのアクセスは許可されていません。"
+msgstr "ページにアクセスできませんでした。"
 
 #: Controller/Component/CsrfComponent.php:181
 #: Http/Middleware/CsrfProtectionMiddleware.php:228
