@@ -5,6 +5,7 @@
  */
 ?>
 <?php $id = $this->request->session()->read("Auth.User.id"); ?>
+<?php $role = $this->request->session()->read("Auth.User.role"); ?>
 
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
 <ul class="side-nav">
@@ -35,9 +36,21 @@
             echo $this->Form->control('tel');
             echo $this->Form->control('zipcode');
             echo $this->Form->control('address');
-            echo $this->Form->control('created_user');
             echo $this->Form->control('modified_user');
-            echo $this->Form->control('role');
+            if (isset($role) && $role == 2) {
+                $list = [
+                    ['text'=>'user', 'value'=>1],
+                    ['text'=>'admin', 'value'=>2]
+                ];
+
+                echo $this->Form->control('role', [
+                    'type'=>'select',
+                    'label'=>'役割',
+                    'required'=>true,
+                    'options'=>$list
+                ]);
+            }
+            
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
