@@ -37,12 +37,17 @@
             echo $this->Form->control('address');
             echo $this->Form->control('created_user');
             echo $this->Form->control('modified_user');
-            echo $this->Form->label("role", "Role");
-            echo $this->Form->select('role', [
-                ["value" => 1, "text"=>"user"],
-                ["value" => 2, "text"=>"admin"],
-                ],
-                ["id" => "role"] );
+            $list = [
+                ['text'=>'user', 'value'=>1],
+                ['text'=>'admin', 'value'=>2]
+            ];
+
+            echo $this->Form->control('role', [
+                'type'=>'select',
+                'label'=>'役割',
+                'required'=>true,
+                'options'=>$list
+            ]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
