@@ -58,6 +58,12 @@ class UsersController extends AppController
 
     public function index()
     {
+        $bulletin_table = TableRegistry::get('bulletins');
+        $bulletins = $this->paginate($bulletin_table->find('all'));
+
+        $this->set(compact('bulletins'));
+        
+
     }
 
     /**
@@ -220,12 +226,12 @@ class UsersController extends AppController
 
             //メールの内容
             $subject = 'パスワード再発行のお知らせ';
-            $message =  "パスワード再発行のリクエストを受け付けました。
-            下記リンクをクリックしていただき、パスワード再設定の登録をお願いいたします。
-            *リンクの有効期限は、24時間です。
-             $url
-            本メールにもしお心当たりのない場合、
-            恐れ入りますが破棄して頂けるようお願いいたします。";  
+            $message ="パスワード再発行のリクエストを受け付けました。
+下記リンクをクリックしていただき、パスワード再設定の登録をお願いいたします。
+*リンクの有効期限は、24時間です。
+$url
+本メールにもしお心当たりのない場合、
+恐れ入りますが破棄して頂けるようお願いいたします。";
             
             $from = 'sixlolo1238@yahoo.co.jp';                          
 
