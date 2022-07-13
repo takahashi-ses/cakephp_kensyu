@@ -12,6 +12,22 @@ use App\Controller\AppController;
  */
 class ChatworksController extends AppController
 {
+    public function isAuthorized($user) {
+
+
+        // var_dump($user);
+        $action = $this->request->getParam("action");
+        $userid = (int)$this->request->getParam("pass.0");
+        if (in_array($action, ["index"])) {
+            return true;
+        }
+        if (in_array($action, ["edit", "delete"])) {
+            if ($userid == $user["id"]) {
+                return true;
+            }
+        }
+        return parent::isAuthorized($user);
+    }
     /**
      * Index method
      *

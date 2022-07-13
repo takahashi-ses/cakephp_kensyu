@@ -17,15 +17,25 @@
         <?= $this->Flash->render() ?>
         <?php foreach ($chatworks as $chat): ?>
             <table>
-                <tr>
-                    <?= $chat->has('user') ? $this->Html->link($chat->user->name, ['controller' => 'Users', 'action' => 'view', $chat->user->id]) : '' ?>
-                    &nbsp;<?= h($chat->created) ?>&nbsp;
-                    <?php if ($user->id == $chat->users_id) : ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $chat->id]) ?>&nbsp;
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete',$chat->id],['confirm' => __('Are you sure you want to delete # {0}?',$chat->id)]) ?>
-                    <?php endif; ?>
-                </tr>
-                <td><?= h($chat->message) ?></td>
+                <tbody>
+                <?php if ($user->id == $chat->users_id) : ?>
+                    <tr class="self-td">
+                <?php else : ?>
+                    <tr class="others-td">
+                <?php endif; ?>
+                        <td><?= h($chat->user->name) ?></td>
+                        <td class="action-td">
+                            <?php if ($user->id == $chat->users_id) : ?>
+                                <?= $this->Html->link(__('Edit'), ['action' => 'edit', $chat->id]) ?>&nbsp;
+                                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete',$chat->id],['confirm' => __('Are you sure you want to delete # {0}?',$chat->id)]) ?>
+                                &nbsp;&nbsp;<?= h($chat->created) ?>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="message-td"><?= h($chat->message) ?></td>
+                    </tr>
+                </tbody>
             </table>
         <?php endforeach; ?>
     </div>
