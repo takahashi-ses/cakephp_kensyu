@@ -525,3 +525,47 @@ table td {
 textarea {
     resize: none;
 }
+
+/* chat css */
+/* .chat-box {
+    border: 5px solid;
+    width: 80%;
+    margin: 30px auto;
+    background-color: rgba(51, 51, 51, 0.208);
+}
+
+.chat-box #textarea {
+    resize: none;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-width: 2px;
+    margin: 30px 0;
+    font-size: 2.0rem;
+}
+
+.send-box {
+    text-align: center;
+    padding: 0 40px;
+} */
+
+
+.chat-form {
+    /* width: 100%; */
+    display: grid;
+    grid-template-columns: 8fr 2fr;
+    position: fixed;
+    bottom: 0;
+    width: 70%;
+}
+.pos-right button {
+    height: 50px;
+}
+.chat-body {
+    margin-top: 24px;
+    width: 100%;
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background: azure;
+}
