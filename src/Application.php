@@ -34,6 +34,8 @@ class Application extends BaseApplication
      */
     public function bootstrap()
     {
+        $this->addPlugin('Cake/Localized');
+
         // Call parent to load bootstrap from files.
         parent::bootstrap();
 

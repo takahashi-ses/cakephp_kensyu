@@ -1,0 +1,766 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2022-07-08 06:24+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: Controller/ReportController.php:57
+#: Controller/ReportController.php:82
+msgid "The report has been saved."
+msgstr "投稿されました。"
+
+#: Controller/ReportController.php:61
+#: Controller/ReportController.php:86
+msgid "The report could not be saved. Please, try again."
+msgstr "投稿できませんでした。もう一度お試しください。"
+
+#: Controller/ReportController.php:104
+msgid "The report has been deleted."
+msgstr "投稿を削除しました。"
+
+#: Controller/ReportController.php:106
+msgid "The report could not be deleted. Please, try again."
+msgstr "投稿を削除できませんでした。もう一度お試しください。"
+
+#: Controller/RostersController.php:123
+msgid "The roster has been saved."
+msgstr "勤務時間の変更を保存しました。"
+
+#: Controller/RostersController.php:127
+msgid "The roster could not be saved. Please, try again."
+msgstr "勤務時間を変更できませんでした。もう一度お試しください。"
+
+#: Controller/RostersController.php:151
+msgid "The roster has been deleted."
+msgstr "勤務時間を削除しました。"
+
+#: Controller/RostersController.php:153
+msgid "The roster could not be deleted. Please, try again."
+msgstr "勤務時間を削除できませんでした。もう一度お試しください。"
+
+#: Controller/UsersController.php:82
+#: Controller/UsersController.php:112
+msgid "The user has been saved."
+msgstr "従業員情報を保存しました。"
+
+#: Controller/UsersController.php:86
+#: Controller/UsersController.php:90
+#: Controller/UsersController.php:116
+msgid "The user could not be saved. Please, try again."
+msgstr "従業員情報を保存できませんでした。もう一度お試しください。"
+
+#: Controller/UsersController.php:136
+msgid "The user has been deleted."
+msgstr "従業員情報を削除しました。"
+
+#: Controller/UsersController.php:138
+msgid "The user could not be deleted. Please, try again."
+msgstr "従業員情報を削除できませんでした。もう一度お試しください。"
+
+#: Controller/UsersController.php:155
+msgid "ユーザー名またはパスワードが違います。"
+msgstr ""
+
+#: Template/Layout/default.ctp:50
+msgid "ログアウト"
+msgstr ""
+
+#: Template/Layout/error.ctp:35
+#: Template/Error/error400.ctp:36
+#: Template/Error/error500.ctp:41
+msgid "Error"
+msgstr "エラー"
+
+#: Template/Layout/error.ctp:43
+msgid "Back"
+msgstr "戻っておくんなまし。"
+
+#: Template/Report/add.ctp:9
+#: Template/Report/edit.ctp:9
+#: Template/Report/index.ctp:9
+#: Template/Report/index.ctp:25
+#: Template/Report/view.ctp:9
+#: Template/Rosters/edit.ctp:9
+#: Template/Rosters/index.ctp:33
+#: Template/Rosters/list.ctp:9
+#: Template/Rosters/list.ctp:28
+#: Template/Rosters/view.ctp:9
+#: Template/Users/edit.ctp:9
+#: Template/Users/list.ctp:44
+#: Template/Users/view.ctp:9
+#: Template/Users/view.ctp:95
+msgid "Actions"
+msgstr "メニュー"
+
+#: Template/Report/add.ctp:10
+#: Template/Report/edit.ctp:16
+#: Template/Report/view.ctp:12
+#: Template/Users/edit.ctp:17
+#: Template/Users/view.ctp:14
+msgid "List Report"
+msgstr "業務報告一覧"
+
+#: Template/Report/add.ctp:11
+#: Template/Report/edit.ctp:17
+#: Template/Report/index.ctp:11
+#: Template/Rosters/edit.ctp:17
+#: Template/Rosters/list.ctp:11
+#: Template/Rosters/view.ctp:14
+#: Template/Users/edit.ctp:16
+#: Template/Users/view.ctp:12
+msgid "List Users"
+msgstr "ユーザ一覧"
+
+#: Template/Report/add.ctp:12
+#: Template/Report/edit.ctp:18
+#: Template/Report/index.ctp:12
+#: Template/Rosters/edit.ctp:18
+#: Template/Rosters/list.ctp:12
+#: Template/Rosters/view.ctp:15
+#: Template/Users/view.ctp:13
+msgid "New User"
+msgstr "新規ユーザ登録"
+
+#: Template/Report/add.ctp:18
+msgid "Add Report"
+msgstr "業務報告追加"
+
+#: Template/Report/add.ctp:24
+#: Template/Report/edit.ctp:30
+#: Template/Rosters/edit.ctp:36
+#: Template/Users/add.ctp:45
+#: Template/Users/edit.ctp:38
+#: View/Helper/FormHelper.php:2030
+msgid "Submit"
+msgstr "送信"
+
+#: Template/Report/edit.ctp:11
+#: Template/Report/index.ctp:38
+#: Template/Rosters/edit.ctp:11
+#: Template/Rosters/index.ctp:45
+#: Template/Rosters/list.ctp:42
+#: Template/Users/edit.ctp:11
+#: Template/Users/list.ctp:66
+#: Template/Users/view.ctp:106
+msgid "Delete"
+msgstr "削除"
+
+#: Template/Report/edit.ctp:13
+#: Template/Report/index.ctp:38
+#: Template/Report/view.ctp:11
+#: Template/Rosters/edit.ctp:13
+#: Template/Rosters/index.ctp:45
+#: Template/Rosters/list.ctp:42
+#: Template/Rosters/view.ctp:11
+#: Template/Users/edit.ctp:13
+#: Template/Users/list.ctp:66
+#: Template/Users/view.ctp:11
+#: Template/Users/view.ctp:106
+msgid "Are you sure you want to delete # {0}?"
+msgstr "id # {0}番 本当に削除しますか？"
+
+#: Template/Report/edit.ctp:24
+#: Template/Report/view.ctp:10
+msgid "Edit Report"
+msgstr "業務報告変更"
+
+#: Template/Report/index.ctp:10
+#: Template/Report/view.ctp:13
+#: Template/Users/edit.ctp:18
+#: Template/Users/view.ctp:15
+msgid "New Report"
+msgstr "業務報告作成"
+
+#: Template/Report/index.ctp:13
+#: Template/Report/view.ctp:18
+#: Template/Rosters/stamp.ctp:13
+#: Template/Users/view.ctp:27
+msgid "HOME"
+msgstr ""
+
+#: Template/Report/index.ctp:17
+msgid "Report"
+msgstr "業務報告"
+
+#: Template/Report/index.ctp:36
+#: Template/Rosters/index.ctp:43
+#: Template/Rosters/list.ctp:40
+#: Template/Users/list.ctp:64
+#: Template/Users/view.ctp:104
+#: View/Helper/PaginatorHelper.php:1271
+msgid "View"
+msgstr "詳細"
+
+#: Template/Report/index.ctp:37
+#: Template/Rosters/index.ctp:44
+#: Template/Rosters/list.ctp:41
+#: Template/Users/list.ctp:65
+#: Template/Users/view.ctp:105
+msgid "Edit"
+msgstr "変更"
+
+#: Template/Report/index.ctp:46
+#: Template/Rosters/index.ctp:53
+#: Template/Rosters/list.ctp:51
+#: Template/Users/list.ctp:74
+msgid "first"
+msgstr "最初に戻る"
+
+#: Template/Report/index.ctp:47
+#: Template/Rosters/index.ctp:54
+#: Template/Rosters/list.ctp:52
+#: Template/Users/list.ctp:75
+msgid "previous"
+msgstr "戻る"
+
+#: Template/Report/index.ctp:49
+#: Template/Rosters/index.ctp:56
+#: Template/Rosters/list.ctp:54
+#: Template/Users/list.ctp:77
+msgid "next"
+msgstr "次へ"
+
+#: Template/Report/index.ctp:50
+#: Template/Rosters/index.ctp:57
+#: Template/Rosters/list.ctp:55
+#: Template/Users/list.ctp:78
+msgid "last"
+msgstr "最後のページへ"
+
+#: Template/Report/index.ctp:52
+#: Template/Rosters/index.ctp:59
+#: Template/Rosters/list.ctp:57
+#: Template/Users/list.ctp:80
+msgid "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total"
+msgstr ""
+
+#: Template/Report/view.ctp:11
+msgid "Delete Report"
+msgstr "業務報告削除"
+
+#: Template/Report/view.ctp:15
+#: Template/Rosters/index.ctp:20
+#: Template/Rosters/stamp.ctp:10
+#: Template/Users/add.ctp:18
+#: Template/Users/index.ctp:15
+#: Template/Users/list.ctp:21
+#: Template/Users/view.ctp:24
+msgid "アカウント新規作成"
+msgstr ""
+
+#: Template/Report/view.ctp:16
+#: Template/Rosters/index.ctp:21
+#: Template/Rosters/stamp.ctp:11
+#: Template/Users/add.ctp:19
+#: Template/Users/index.ctp:16
+#: Template/Users/list.ctp:22
+#: Template/Users/view.ctp:25
+msgid "ユーザーリスト"
+msgstr ""
+
+#: Template/Report/view.ctp:25
+#: Template/Rosters/view.ctp:22
+msgid "User"
+msgstr "従業員名"
+
+#: Template/Report/view.ctp:29
+#: Template/Users/view.ctp:94
+msgid "Comment"
+msgstr "報告内容"
+
+#: Template/Report/view.ctp:33
+#: Template/Rosters/view.ctp:38
+#: Template/Users/view.ctp:70
+#: Template/Users/view.ctp:91
+msgid "Id"
+msgstr "ID"
+
+#: Template/Report/view.ctp:37
+#: Template/Rosters/view.ctp:58
+#: Template/Users/view.ctp:78
+#: Template/Users/view.ctp:93
+msgid "Created"
+msgstr "作成日"
+
+#: Template/Rosters/edit.ctp:16
+#: Template/Rosters/view.ctp:12
+msgid "List Rosters"
+msgstr "勤怠管理"
+
+#: Template/Rosters/edit.ctp:24
+#: Template/Rosters/view.ctp:10
+msgid "Edit Roster"
+msgstr "勤怠修正"
+
+#: Template/Rosters/index.ctp:10
+#: Template/Rosters/stamp.ctp:5
+#: Template/Users/add.ctp:9
+#: Template/Users/index.ctp:5
+#: Template/Users/list.ctp:11
+#: Template/Users/view.ctp:20
+msgid "メニュー"
+msgstr ""
+
+#: Template/Rosters/index.ctp:12
+#: Template/Rosters/index.ctp:15
+#: Template/Rosters/stamp.ctp:6
+#: Template/Users/add.ctp:13
+#: Template/Users/index.ctp:7
+#: Template/Users/index.ctp:10
+#: Template/Users/list.ctp:15
+#: Template/Users/list.ctp:16
+#: Template/Users/view.ctp:21
+msgid "勤怠管理"
+msgstr ""
+
+#: Template/Rosters/index.ctp:14
+#: Template/Users/index.ctp:9
+msgid "勤怠入力"
+msgstr ""
+
+#: Template/Rosters/index.ctp:17
+#: Template/Rosters/stamp.ctp:7
+#: Template/Users/add.ctp:15
+#: Template/Users/index.ctp:12
+#: Template/Users/list.ctp:18
+#: Template/Users/view.ctp:22
+msgid "業務報告"
+msgstr ""
+
+#: Template/Rosters/index.ctp:18
+#: Template/Rosters/stamp.ctp:8
+#: Template/Users/index.ctp:13
+msgid "会員情報"
+msgstr ""
+
+#: Template/Rosters/index.ctp:26
+msgid "勤怠管理ユーザー"
+msgstr ""
+
+#: Template/Rosters/list.ctp:10
+#: Template/Rosters/view.ctp:13
+msgid "New Roster"
+msgstr ""
+
+#: Template/Rosters/view.ctp:11
+msgid "Delete Roster"
+msgstr ""
+
+#: Template/Rosters/view.ctp:26
+msgid "Reason"
+msgstr ""
+
+#: Template/Rosters/view.ctp:30
+#: Template/Users/view.ctp:62
+msgid "Created User"
+msgstr "作成者"
+
+#: Template/Rosters/view.ctp:34
+#: Template/Users/view.ctp:66
+msgid "Modified User"
+msgstr "更新者"
+
+#: Template/Rosters/view.ctp:42
+msgid "Status"
+msgstr "ステータス"
+
+#: Template/Rosters/view.ctp:46
+msgid "Start Time"
+msgstr "出勤時間"
+
+#: Template/Rosters/view.ctp:50
+msgid "End Time"
+msgstr "退勤時間"
+
+#: Template/Rosters/view.ctp:54
+msgid "Deleted"
+msgstr "削除"
+
+#: Template/Rosters/view.ctp:62
+#: Template/Users/view.ctp:82
+msgid "Modified"
+msgstr "更新日"
+
+#: Template/Users/add.ctp:11
+#: Template/Users/list.ctp:13
+msgid "勤怠修正"
+msgstr ""
+
+#: Template/Users/add.ctp:16
+#: Template/Users/list.ctp:19
+msgid "従業員情報"
+msgstr ""
+
+#: Template/Users/add.ctp:26
+msgid "Add User"
+msgstr "従業員追加"
+
+#: Template/Users/edit.ctp:24
+#: Template/Users/view.ctp:10
+msgid "Edit User"
+msgstr "従業員変更"
+
+#: Template/Users/list.ctp:27
+msgid "Users"
+msgstr "従業員名"
+
+#: Template/Users/login.ctp:5
+msgid "Please enter your username and password"
+msgstr "アカウント名とパスワードを入力してください"
+
+#: Template/Users/login.ctp:9
+msgid "Login"
+msgstr "ログイン"
+
+#: Template/Users/view.ctp:11
+msgid "Delete User"
+msgstr "従業員削除"
+
+#: Template/Users/view.ctp:34
+msgid "Account"
+msgstr "アカウント"
+
+#: Template/Users/view.ctp:38
+msgid "Password"
+msgstr "パスワード"
+
+#: Template/Users/view.ctp:42
+msgid "Name"
+msgstr "名前"
+
+#: Template/Users/view.ctp:46
+msgid "Email"
+msgstr "メールアドレス"
+
+#: Template/Users/view.ctp:50
+msgid "Tel"
+msgstr "電話番号"
+
+#: Template/Users/view.ctp:54
+msgid "Zipcode"
+msgstr "郵便番号"
+
+#: Template/Users/view.ctp:58
+msgid "Address"
+msgstr "住所"
+
+#: Template/Users/view.ctp:74
+msgid "Role"
+msgstr "役割"
+
+#: Template/Users/view.ctp:87
+msgid "Related Report"
+msgstr "業務報告一覧"
+
+#: Template/Users/view.ctp:92
+msgid "User Id"
+msgstr "ユーザID"
+
+#: Template/Error/error400.ctp:37
+msgid "The requested address {0} was not found on this server."
+msgstr "このアドレスはありません。"
+
+#: Template/Error/error500.ctp:39
+msgid "An Internal Error Has Occurred"
+msgstr "内部でエラーが発生しました。"
+
+#: Controller/Component/AuthComponent.php:502
+msgid "You are not authorized to access that location."
+msgstr "ページにアクセスできませんでした。"
+
+#: Controller/Component/CsrfComponent.php:181
+#: Http/Middleware/CsrfProtectionMiddleware.php:228
+msgid "Missing CSRF token cookie"
+msgstr "クッキーがありません。"
+
+#: Controller/Component/CsrfComponent.php:185
+#: Http/Middleware/CsrfProtectionMiddleware.php:232
+msgid "CSRF token mismatch."
+msgstr "トークンが一致しません"
+
+#: Error/ExceptionRenderer.php:301
+msgid "Not Found"
+msgstr "存在しません。"
+
+#: Error/ExceptionRenderer.php:303
+msgid "An Internal Error Has Occurred."
+msgstr ""
+
+#: Http/Response.php:2679
+msgid "The requested file contains `..` and will not be read."
+msgstr ""
+
+#: Http/Response.php:2700
+msgid "The requested file was not found"
+msgstr ""
+
+#: I18n/Number.php:89
+msgid "{0,number,#,###.##} KB"
+msgstr ""
+
+#: I18n/Number.php:91
+msgid "{0,number,#,###.##} MB"
+msgstr ""
+
+#: I18n/Number.php:93
+msgid "{0,number,#,###.##} GB"
+msgstr ""
+
+#: I18n/Number.php:95
+msgid "{0,number,#,###.##} TB"
+msgstr ""
+
+#: I18n/Number.php:87
+msgid "{0,number,integer} Byte"
+msgid_plural "{0,number,integer} Bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: I18n/RelativeTimeFormatter.php:80
+msgid "{0} from now"
+msgstr ""
+
+#: I18n/RelativeTimeFormatter.php:80
+msgid "{0} ago"
+msgstr ""
+
+#: I18n/RelativeTimeFormatter.php:83
+msgid "{0} after"
+msgstr ""
+
+#: I18n/RelativeTimeFormatter.php:83
+msgid "{0} before"
+msgstr ""
+
+#: I18n/RelativeTimeFormatter.php:114
+msgid "just now"
+msgstr ""
+
+#: I18n/RelativeTimeFormatter.php:151
+msgid "about a second ago"
+msgstr ""
+
+#: I18n/RelativeTimeFormatter.php:152
+msgid "about a minute ago"
+msgstr ""
+
+#: I18n/RelativeTimeFormatter.php:153
+msgid "about an hour ago"
+msgstr ""
+
+#: I18n/RelativeTimeFormatter.php:154
+#: I18n/RelativeTimeFormatter.php:332
+msgid "about a day ago"
+msgstr ""
+
+#: I18n/RelativeTimeFormatter.php:155
+#: I18n/RelativeTimeFormatter.php:333
+msgid "about a week ago"
+msgstr ""
+
+#: I18n/RelativeTimeFormatter.php:156
+#: I18n/RelativeTimeFormatter.php:334
+msgid "about a month ago"
+msgstr ""
+
+#: I18n/RelativeTimeFormatter.php:157
+#: I18n/RelativeTimeFormatter.php:335
+msgid "about a year ago"
+msgstr ""
+
+#: I18n/RelativeTimeFormatter.php:168
+msgid "in about a second"
+msgstr ""
+
+#: I18n/RelativeTimeFormatter.php:169
+msgid "in about a minute"
+msgstr ""
+
+#: I18n/RelativeTimeFormatter.php:170
+msgid "in about an hour"
+msgstr ""
+
+#: I18n/RelativeTimeFormatter.php:171
+#: I18n/RelativeTimeFormatter.php:346
+msgid "in about a day"
+msgstr ""
+
+#: I18n/RelativeTimeFormatter.php:172
+#: I18n/RelativeTimeFormatter.php:347
+msgid "in about a week"
+msgstr ""
+
+#: I18n/RelativeTimeFormatter.php:173
+#: I18n/RelativeTimeFormatter.php:348
+msgid "in about a month"
+msgstr ""
+
+#: I18n/RelativeTimeFormatter.php:174
+#: I18n/RelativeTimeFormatter.php:349
+msgid "in about a year"
+msgstr ""
+
+#: I18n/RelativeTimeFormatter.php:304
+msgid "today"
+msgstr ""
+
+#: I18n/RelativeTimeFormatter.php:370
+msgid "%s ago"
+msgstr ""
+
+#: I18n/RelativeTimeFormatter.php:371
+msgid "on %s"
+msgstr ""
+
+#: I18n/RelativeTimeFormatter.php:47
+#: I18n/RelativeTimeFormatter.php:126
+#: I18n/RelativeTimeFormatter.php:316
+msgid "{0} year"
+msgid_plural "{0} years"
+msgstr[0] ""
+msgstr[1] ""
+
+#: I18n/RelativeTimeFormatter.php:51
+#: I18n/RelativeTimeFormatter.php:129
+#: I18n/RelativeTimeFormatter.php:319
+msgid "{0} month"
+msgid_plural "{0} months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: I18n/RelativeTimeFormatter.php:57
+#: I18n/RelativeTimeFormatter.php:132
+#: I18n/RelativeTimeFormatter.php:322
+msgid "{0} week"
+msgid_plural "{0} weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: I18n/RelativeTimeFormatter.php:59
+#: I18n/RelativeTimeFormatter.php:135
+#: I18n/RelativeTimeFormatter.php:325
+msgid "{0} day"
+msgid_plural "{0} days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: I18n/RelativeTimeFormatter.php:64
+#: I18n/RelativeTimeFormatter.php:138
+msgid "{0} hour"
+msgid_plural "{0} hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: I18n/RelativeTimeFormatter.php:68
+#: I18n/RelativeTimeFormatter.php:141
+msgid "{0} minute"
+msgid_plural "{0} minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: I18n/RelativeTimeFormatter.php:72
+#: I18n/RelativeTimeFormatter.php:144
+msgid "{0} second"
+msgid_plural "{0} seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ORM/RulesChecker.php:56
+msgid "This value is already in use"
+msgstr "その値はすでに使われています"
+
+#: ORM/RulesChecker.php:103
+msgid "This value does not exist"
+msgstr ""
+
+#: ORM/RulesChecker.php:127
+msgid "The count does not match {0}{1}"
+msgstr ""
+
+#: Utility/Text.php:934
+msgid "and"
+msgstr ""
+
+#: Validation/Validator.php:2437
+#: View/Form/ArrayContext.php:226
+msgid "This field is required"
+msgstr "必須情報です。入力してください。"
+
+#: Validation/Validator.php:2459
+msgid "This field cannot be left empty"
+msgstr "フィールドが空です。"
+
+#: Validation/Validator.php:2610
+msgid "The provided value is invalid"
+msgstr "値が無効です。"
+
+#: View/Helper/FormHelper.php:1108
+msgid "Edit {0}"
+msgstr ""
+
+#: View/Helper/FormHelper.php:1110
+msgid "New {0}"
+msgstr ""
+
+#: View/Helper/HtmlHelper.php:818
+msgid "Home"
+msgstr ""
+
+#: View/Widget/DateTimeWidget.php:539
+msgid "January"
+msgstr "1月"
+
+#: View/Widget/DateTimeWidget.php:540
+msgid "February"
+msgstr "2月"
+
+#: View/Widget/DateTimeWidget.php:541
+msgid "March"
+msgstr "3月"
+
+#: View/Widget/DateTimeWidget.php:542
+msgid "April"
+msgstr "4月"
+
+#: View/Widget/DateTimeWidget.php:543
+msgid "May"
+msgstr "5月"
+
+#: View/Widget/DateTimeWidget.php:544
+msgid "June"
+msgstr "6月"
+
+#: View/Widget/DateTimeWidget.php:545
+msgid "July"
+msgstr "7月"
+
+#: View/Widget/DateTimeWidget.php:546
+msgid "August"
+msgstr "8月"
+
+#: View/Widget/DateTimeWidget.php:547
+msgid "September"
+msgstr "9月"
+
+#: View/Widget/DateTimeWidget.php:548
+msgid "October"
+msgstr "10月"
+
+#: View/Widget/DateTimeWidget.php:549
+msgid "November"
+msgstr "11月"
+
+#: View/Widget/DateTimeWidget.php:550
+msgid "December"
+msgstr "12月"
+

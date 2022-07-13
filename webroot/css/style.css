@@ -395,7 +395,6 @@ fieldset legend {
 }
 
 .form button[type="submit"] {
-    float: right;
     text-transform: uppercase;
     box-shadow: none;
 }
@@ -521,4 +520,44 @@ div.message.hidden {
 table td {
     vertical-align: top;
     word-break: break-all;
+}
+
+textarea {
+    resize: none;
+}
+
+.chatworks {
+    height:100vh
+}
+
+.chat-form {
+    /* width: 100%; */
+    display: grid;
+    grid-template-columns: 8fr 2fr;
+    position: fixed;
+    bottom: 0;
+    width: 80%;
+}
+.pos-right button {
+    height: 50px;
+}
+.chat-body {
+    margin-top: 24px;
+    width: 100%;
+    height: 85%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.self-td {
+    background-color: navajowhite;
+}
+.others-td {
+    background-color:#a0d3e8
+}
+.action-td {
+    text-align: end;
+}
+.message-td {
+    font-size: 21px;
+    background-color:seashell
 }

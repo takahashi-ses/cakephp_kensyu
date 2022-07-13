@@ -12,6 +12,23 @@ use App\Controller\AppController;
  */
 class ReportController extends AppController
 {
+
+    public function isAuthorized($user) {
+
+
+        // var_dump($user);
+        $action = $this->request->getParam("action");
+        $userid = (int)$this->request->getParam("pass.0");
+        if (in_array($action, ["index"])) {
+            return true;
+        }
+        if (in_array($action, ["edit", "view", "delete", "add"])) {
+            if ($userid == $user["id"]) {
+                return true;
+            }
+        }
+        return parent::isAuthorized($user);
+    }
     /**
      * Index method
      *
@@ -19,12 +36,21 @@ class ReportController extends AppController
      */
     public function index()
     {
+        $id = $this->request->session()->read("Auth.User.id");
+
         $this->paginate = [
             'contain' => ['Users'],
         ];
-        $report = $this->paginate($this->Report);
-
-        $this->set(compact('report'));
+        $reports = $this->paginate($this->Report);
+        $myReports = $this->paginate($this->Report->find('all')->where(['user_id' => $id]));
+        $account = $this->request->session()->read('Auth.User.account');
+        $this->Users = $this->loadModel('Users');
+        $user = $this->Users->find()->where(['account' => $account])->first();
+        if ($this->request->session()->read("Auth.User.role") == 2) {
+            $this->set(compact('reports', 'user'));
+        } else {
+            $this->set(compact('myReports', 'user'));
+        }
     }
 
     /**
@@ -60,8 +86,11 @@ class ReportController extends AppController
             }
             $this->Flash->error(__('The report could not be saved. Please, try again.'));
         }
-        $users = $this->Report->Users->find('list', ['limit' => 200]);
-        $this->set(compact('report', 'users'));
+
+        $account = $this->request->session()->read('Auth.User.account');
+        $this->Users = $this->loadModel('Users');
+        $user = $this->Users->find()->where(['account' => $account])->first();
+        $this->set(compact('report', 'user'));
     }
 
     /**
@@ -85,7 +114,13 @@ class ReportController extends AppController
             }
             $this->Flash->error(__('The report could not be saved. Please, try again.'));
         }
-        $users = $this->Report->Users->find('list', ['limit' => 200]);
+        if ($this->request->session()->read("Auth.User.role") == 2) {
+            $users = $this->Report->Users->find('list', ['limit' => 200]);
+        } else {
+            $account = $this->request->session()->read('Auth.User.account');
+            $this->Users = $this->loadModel('Users');
+            $users = $this->Users->find()->where(['account' => $account])->first();
+        }
         $this->set(compact('report', 'users'));
     }
 

@@ -14,6 +14,27 @@ use Cake\ORM\Table;
  */
 class RostersController extends AppController
 {
+
+    public function isAuthorized($user) {
+
+
+        // var_dump($user);
+        $action = $this->request->getParam("action");
+        if (in_array($action, ["stamp"])) {
+            return true;
+        }
+
+
+        $userid = (int)$this->request->getParam("pass.0");
+        if (in_array($action, ["view", "list"])) {
+            if ($userid == $user["id"]) {
+                return true;
+            }
+        }
+        return parent::isAuthorized($user);
+    }
+
+
     /**
      * Index method
      *
@@ -21,12 +42,30 @@ class RostersController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Users'],
-        ];
-        $rosters = $this->paginate($this->Rosters);
+            $this->paginate = [
+                'contain' => ['Users'],
+            ];
+            $rosters = $this->paginate($this->Rosters
+                ->find()
+                ->DISTINCT("name"));
 
-        $this->set(compact('rosters'));
+
+            $this->set(compact('rosters'));
+    }
+
+    public function list($id = null)
+    {
+            $rosters = $this->paginate = [
+                'contain' => ['Users'],
+            ];
+
+            $rosters = $this->paginate($this->Rosters
+                ->find("all",
+                    ["conditions" => ["users_id" => $id]]));
+
+
+            $this->set(compact('rosters'));
+
     }
 
     /**
@@ -45,26 +84,34 @@ class RostersController extends AppController
         $this->set('roster', $roster);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $roster = $this->Rosters->newEntity();
-        if ($this->request->is('post')) {
-            $roster = $this->Rosters->patchEntity($roster, $this->request->getData());
-            if ($this->Rosters->save($roster)) {
-                $this->Flash->success(__('The roster has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The roster could not be saved. Please, try again.'));
-        }
-        $users = $this->Rosters->Users->find('list', ['limit' => 200]);
-        $this->set(compact('roster', 'users'));
-    }
+    //stmpメソッドがあるため未使用
+    // /**
+    //  * Add method
+    //  *
+    //  * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
+    //  */
+    // public function add()
+    // {
+
+    //     if ($this->request->session()->read("Auth.User.role") == 2)
+    //     {
+    //         $roster = $this->Rosters->newEntity();
+    //         if ($this->request->is('post')) {
+    //             $roster = $this->Rosters->patchEntity($roster, $this->request->getData());
+    //             if ($this->Rosters->save($roster)) {
+    //                 $this->Flash->success(__('The roster has been saved.'));
+
+    //                 return $this->redirect(['action' => 'index']);
+    //             }
+    //             $this->Flash->error(__('The roster could not be saved. Please, try again.'));
+    //         }
+    //         $users = $this->Rosters->Users->find('list', ['limit' => 200]);
+    //         $this->set(compact('roster', 'users'));
+    //     } else {
+    //         return $this->redirect(["controller" => "users", "action" => "index"]);
+    //     }
+    // }
 
     /**
      * Edit method
@@ -100,15 +147,16 @@ class RostersController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
-        $roster = $this->Rosters->get($id);
-        if ($this->Rosters->delete($roster)) {
-            $this->Flash->success(__('The roster has been deleted.'));
-        } else {
-            $this->Flash->error(__('The roster could not be deleted. Please, try again.'));
-        }
+            $this->request->allowMethod(['post', 'delete']);
+            $roster = $this->Rosters->get($id);
+            if ($this->Rosters->delete($roster)) {
+                $this->Flash->success(__('The roster has been deleted.'));
+            } else {
+                $this->Flash->error(__('The roster could not be deleted. Please, try again.'));
+            }
 
-        return $this->redirect(['action' => 'index']);
+            return $this->redirect(['action' => 'index']);
+
     }
 
     /**
@@ -118,10 +166,10 @@ class RostersController extends AppController
     {
 
         $account = $this->request->session()->read('Auth.User.account');
+        $id = $this->request->session()->read("Auth.User.id");
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             //送信データ取得
-            // $account = $this->request->getData('account');
             $kubun = $this->request->getData('kubun');
 
             //accountからユーザーID取得
@@ -130,7 +178,7 @@ class RostersController extends AppController
 
             if (!$account) {
                 $this->Flash->error('アカウント情報がありません');
-                var_dump($user);
+                // var_dump($user);
                 return;
             }
 
@@ -147,6 +195,8 @@ class RostersController extends AppController
             if (isset($roster)) {
                 if ($roster->start_time != NULL and $roster->end_time != NULL) {
                     $this->Flash->error('既に出退勤済みです。');
+                    $rosters = $this->paginate($this->Rosters->find('all')->where(['users_id' => $id])->limit('5'));
+                    $this->set(compact('rosters', 'id'));
                     return;
                 }
             }
@@ -162,6 +212,8 @@ class RostersController extends AppController
             if ($kubun === 'sta') {
                 if (isset($roster)) {
                     $this->Flash->error('既に出勤しています。');
+                    $rosters = $this->paginate($this->Rosters->find('all')->where(['users_id' => $id])->limit('5'));
+                    $this->set(compact('rosters', 'id'));
                     return;
                 } else {
                     $tmpArr['start_time'] = $now;
@@ -174,6 +226,8 @@ class RostersController extends AppController
                     $msg = 'お疲れさまでした。';
                 } else {
                     $this->Flash->error('まだ出勤していません。');
+                    $rosters = $this->paginate($this->Rosters->find('all')->where(['users_id' => $id])->limit('5'));
+                    $this->set(compact('rosters', 'id'));
                     return;
                 }
             }
@@ -185,6 +239,10 @@ class RostersController extends AppController
             } else {
                 $this->Flash->error('打刻でエラーが発生しました。');
             }
+
         }
+        $rosters = $this->paginate($this->Rosters->find('all')->where(['users_id' => $id])->limit('5'));
+        $this->set(compact('rosters', 'id'));
+        // var_dump($rosters);
     }
 }
