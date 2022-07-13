@@ -248,7 +248,9 @@ $url
 
     public function msg()
     {
-
+        if (!$this->request->is('post')){
+            throw new NotFoundException();
+        }
         //画面遷移だけなんでなんもせん
     }
 

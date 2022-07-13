@@ -30,7 +30,7 @@ class ReportController extends AppController
                 return true;
             }
         }
-
+        
         if (in_array($action, ["edit", "view", "delete"])) {
             foreach ($userid as $id) {
                 if ($id['user_id'] == $user["id"]) {
