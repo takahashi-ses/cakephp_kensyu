@@ -764,3 +764,6 @@ msgstr "11月"
 msgid "December"
 msgstr "12月"
 
+msgid "title"
+msgstr "タイトル"
+
