@@ -35,7 +35,7 @@
                 echo "報告者 : " . $users->name;
                 echo $this->Form->hidden('user_id', ['value' => $users->id]);
             }
-            echo $this->Form->control('comment');
+            echo $this->Form->textarea('comment');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
