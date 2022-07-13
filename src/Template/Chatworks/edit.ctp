@@ -1,8 +1,9 @@
-<!-- <?php
-var_dump($id); echo '<br>';
-var_dump($rosters);
-?> -->
-
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Chatwork $chatwork
+ */
+?>
 <?php $id = $this->request->session()->read("Auth.User.id"); ?>
 
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
@@ -21,35 +22,25 @@ var_dump($rosters);
         <li><?= $this->Html->link(__('従業員情報'), ['controller' => 'users', 'action' => "view/$id"]) ?></li>
         <li><?= $this->Html->link(__('従業員情報変更'), ['controller' => 'users', 'action' => "edit/$id"]) ?></li>
         <li><?= $this->Html->link(__('チャット'), ['controller' => 'chatworks', 'action' => "index"]) ?></li>
+        <li><?= $this->Form->postLink(
+                __('Delete'),
+                ['action' => 'delete', $chatwork->id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $chatwork->id)]
+            )
+        ?></li>
     </ul>
 </nav>
 
-<div class="rosters form" style="text-align:center;">
-    <div>
-        <?= $this->Flash->render() ?>
-        <h3 id="date"></h3>
-        <h1 id="realtime"></h1>
-        <?= $this->Form->create() ?>
-        <?= $this->Form->button('出勤', ['value' => 'sta', 'name' => 'kubun']); ?>
-        <?= $this->Form->button('退勤', ['value' => 'end', 'name' => 'kubun']); ?>
-        <?= $this->Form->end() ?>
-    </div>
-
-    <p style="margin-top: 64px;">最近の打刻</p>
-    <table cellpadding="0" cellspacing="0" style="margin-left: 40%; width: 50%">
-        <thead>
-            <tr>
-                <th><?= $this->Paginator->sort('start_time') ?></th>
-                <th><?= $this->Paginator->sort('end_time') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($rosters as $roster): ?>
-                <tr>
-                    <td><?= h($roster->start_time) ?></td>
-                    <td><?= h($roster->end_time) ?></td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+<div class="chatworks form large-9 medium-8 columns content">
+    <?= $this->Form->create($chatwork) ?>
+    <fieldset>
+        <legend><?= __('Edit Chatwork') ?></legend>
+        <?php
+            echo "報告者 : " . $users->name;
+            echo $this->Form->hidden('user_id', ['value' => $users->id]);
+            echo $this->Form->textarea('message');
+        ?>
+    </fieldset>
+    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->end() ?>
 </div>

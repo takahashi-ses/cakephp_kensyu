@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Localized\Validation\JpValidation;
 
 /**
  * Users Model
@@ -53,6 +54,9 @@ class UsersTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
+
+        $validator->setProvider('jp', JpValidation::class);
+
         $validator
             ->integer('id')
             ->allowEmptyString('id', null, 'create');
@@ -77,18 +81,26 @@ class UsersTable extends Table
 
         $validator
             ->email('email')
-            ->notEmptyString('email');
+            ->notEmptyString('email')
+            ->add('mail', 'validFormat', [
+                'rule' => 'email',
+                'message' => 'そのメールアドレスはすでに使われています'
+                ]);
 
         $validator
             ->scalar('tel')
-            ->maxLength('tel', 20)
-            ->requirePresence('tel', 'create')
-            ->notEmptyString('tel');
+            ->allowEmpty('tel')
+            ->add('tel', 'tel', [
+             'rule' => 'phone',
+             'provider' => 'jp',
+            ]);
 
         $validator
-            ->scalar('zipcode')
-            ->maxLength('zipcode', 10)
-            ->notEmptyString('zipcode');
+            ->notEmptyString('zipcode')
+            ->add('zipcode', 'custom',[
+                 'rule' =>[$this, 'zip_check'],
+                 'message' => '正しい形式で入力してください'
+                 ]);
 
         $validator
             ->scalar('address')
@@ -126,5 +138,11 @@ class UsersTable extends Table
         $rules->add($rules->isUnique(['account']));
 
         return $rules;
+    }
+
+    public function zip_check($value, $context)
+    {
+        //boolで返さないとエラー
+        return (bool) preg_match('/^([0-9]{3})(-[0-9]{4})?$/i', $value);
     }
 }

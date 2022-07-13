@@ -677,7 +677,7 @@ msgstr[1] ""
 
 #: ORM/RulesChecker.php:56
 msgid "This value is already in use"
-msgstr ""
+msgstr "その値はすでに使われています"
 
 #: ORM/RulesChecker.php:103
 msgid "This value does not exist"
