@@ -4,20 +4,33 @@
  * @var \App\Model\Entity\Chatwork $chatwork
  */
 ?>
+<?php $id = $this->request->session()->read("Auth.User.id"); ?>
+
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
+<ul class="side-nav">
+        <li class="heading"><?= __('メニュー') ?></li>
+        <?php if ($this->request->session()->read("Auth.User.role") == 2): ?>
+            <li><?= $this->Html->link(__('アカウント新規作成'), ['controller'=>'users', 'action' => 'add']) ?></li>
+            <li><?= $this->Html->link(__('ユーザーリスト'), ['controller'=>'users', 'action' => 'list']) ?></li>
+            <li><?= $this->Html->link(__('勤怠修正'), ["controller"=>"rosters" ,'action' => 'index']) ?></li>
+        <?php else: ?>
+            <li><?= $this->Html->link(__('勤怠入力'), ["controller"=>"rosters" ,'action' => "stamp/$id"]) ?></li>
+            <li><?= $this->Html->link(__('勤怠時間閲覧'), ["controller"=>"rosters" ,'action' => "list/$id"]) ?></li>
+            <li><?= $this->Html->link(__('業務報告作成'), ['controller' => 'Report', 'action' => "add/$id"]) ?></li>
+        <?php endif; ?>
+        <li><?= $this->Html->link(__('業務報告書確認'), ['controller' => 'Report', 'action' => "index/$id"]) ?></li>
+        <li><?= $this->Html->link(__('従業員情報'), ['controller' => 'users', 'action' => "view/$id"]) ?></li>
+        <li><?= $this->Html->link(__('従業員情報変更'), ['controller' => 'users', 'action' => "edit/$id"]) ?></li>
+        <li><?= $this->Html->link(__('チャット'), ['controller' => 'chatworks', 'action' => "index"]) ?></li>
         <li><?= $this->Form->postLink(
                 __('Delete'),
                 ['action' => 'delete', $chatwork->id],
                 ['confirm' => __('Are you sure you want to delete # {0}?', $chatwork->id)]
             )
         ?></li>
-        <li><?= $this->Html->link(__('List Chatworks'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
     </ul>
 </nav>
+
 <div class="chatworks form large-9 medium-8 columns content">
     <?= $this->Form->create($chatwork) ?>
     <fieldset>
