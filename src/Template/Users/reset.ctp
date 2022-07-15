@@ -1,6 +1,10 @@
-<?php
-echo '新しいパスワードを入力してください。';
-echo $this->Form->create('users', ['action' => 'resetok']);
-echo $this->Form->control('password');
-echo $this->Form->submit('確定');
-echo $this->Form->end();
+
+<h4 class='email_title'>新しいパスワードを入力してください。</h4>
+<?= $this->Form->create('users', ['action'=>'resetok']); ?>
+<div class="input_email">
+    <?= $this->Form->controll('password', ['type'=>'password']); ?>
+</div>
+<div class="email_button">
+    <?= $this->Form->button('送信'); ?>
+</div>
+<?= $this->Form->end(); ?>
