@@ -561,3 +561,43 @@ textarea {
     font-size: 21px;
     background-color:seashell
 }
+
+.title {
+    /* border: solid 1px red; */
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.index_table table {
+    border-collapse: separate;
+    border-spacing: 10px;
+    /* margin: 5% 5% 5%; */
+    margin-bottom: 0px;
+}
+
+.osirase {
+    text-align: center;
+}
+
+.index_table {
+    width: 50%;
+    margin: 5% 25% auto;
+    border: solid 1px rgb(182, 182, 182);
+}
+
+.date {
+    font-size: 0.8rem;
+    text-align: right;
+}
+
+.main_content {
+    width: 60%;
+    margin: 5% 20% 10%;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 500;
+    border: solid 1px rgb(182, 182, 182);
+}
+
