@@ -249,9 +249,6 @@ $url
 
     public function msg()
     {
-        if ($this->request->is('get')){
-            throw new NotFoundException();
-        }
         //画面遷移だけなんでなんもせん
     }
 
