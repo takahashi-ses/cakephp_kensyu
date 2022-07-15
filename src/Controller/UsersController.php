@@ -59,7 +59,8 @@ class UsersController extends AppController
     public function index()
     {
         $bulletin_table = TableRegistry::get('bulletins');
-        $bulletins = $this->paginate($bulletin_table->find('all'));
+        $bulletins = $this->paginate($bulletin_table->find('all')
+            ->order(['id'=>'DESC']));
 
         $this->set(compact('bulletins'));
         
@@ -248,7 +249,7 @@ $url
 
     public function msg()
     {
-        if (!$this->request->is('post')){
+        if ($this->request->is('get')){
             throw new NotFoundException();
         }
         //画面遷移だけなんでなんもせん
