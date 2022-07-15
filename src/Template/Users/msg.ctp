@@ -2,6 +2,6 @@
 
 echo "メッセージを送信しました。";
 echo '<br>';
-echo $this->Form->create('users', ['action'=>'login']);
-echo $this->Form->submit('ログイン画面へ');
-echo $this->Form->end();
+// echo $this->Form->create();
+echo $this->Html->link('ログイン画面へ', ['controller'=>'users', 'action'=>'login']);
+// echo $this->Form->end();\\\

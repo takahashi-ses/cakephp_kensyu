@@ -24,13 +24,8 @@
 </nav>
 <div class="bulletins view large-9 medium-8 columns content">
     <h3><?= h($bulletin->title) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <td><?= h($bulletin->created) ?></td>
-        </tr>
-        <tr>
-            <td><?= h($bulletin->text) ?></td>
-        </tr>
-
-    </table>
+        <?= h($bulletin->created) ?>
+    <div class="main_content">
+        <?= h($bulletin->text) ?>
+    </div>
 </div>

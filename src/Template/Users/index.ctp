@@ -1,5 +1,4 @@
 <?php $id = $this->request->session()->read("Auth.User.id"); ?>
-
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
 <ul class="side-nav">
         <li class="heading"><?= __('メニュー') ?></li>
@@ -7,6 +6,8 @@
             <li><?= $this->Html->link(__('アカウント新規作成'), ['controller'=>'users', 'action' => 'add']) ?></li>
             <li><?= $this->Html->link(__('ユーザーリスト'), ['controller'=>'users', 'action' => 'list']) ?></li>
             <li><?= $this->Html->link(__('勤怠修正'), ["controller"=>"rosters" ,'action' => 'index']) ?></li>
+            <li><?= $this->Html->link(__('お知らせ追加'), ["controller"=>"bulletins" ,'action' => 'add']) ?></li>
+            <li><?= $this->Html->link(__('お知らせリスト'), ["controller"=>"bulletins" ,'action' => 'index']) ?></li>
         <?php else: ?>
             <li><?= $this->Html->link(__('勤怠入力'), ["controller"=>"rosters" ,'action' => "stamp/$id"]) ?></li>
             <li><?= $this->Html->link(__('勤怠時間閲覧'), ["controller"=>"rosters" ,'action' => "list/$id"]) ?></li>
@@ -19,32 +20,30 @@
     </ul>
 </nav>
 <div class="bulletins index large-9 medium-8 columns content">
-    <h3><?= __('お知らせ') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('タイトル') ?></th>
-                <!-- <th scope="col"><?= $this->Paginator->sort('text') ?></th> -->
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <!-- <th scope="col" class="actions"><?= __('Actions') ?></th> -->
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($bulletins as $bulletin): ?>
-            <tr>
-                <td><?= $this->Html->link($bulletin->title, ['controller'=>'Bulletins', 'action'=>'view', $bulletin->id]) ?></td>
-                <!-- <td><?= h($bulletin->text) ?></td> -->
-                <td><?= h($bulletin->created) ?></td>
-                <!-- <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $bulletin->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $bulletin->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $bulletin->id], ['confirm' => __('Are you sure you want to delete # {0}?', $bulletin->id)]) ?>
-                </td> -->
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
+    <h3 class="osirase"><?= __('お知らせ') ?></h3>
+    <div class="index_table">
+        <table cellpadding="0" cellspacing="0">
+            <tbody>
+                <div class="index_bulletin">
+                    <?php foreach ($bulletins as $bulletin): ?>
+                        <?php if ($bulletin["title"]) : ?>
+                            <tr>
+                                <td class="title"><?= $this->Html->link($bulletin->title, ['controller'=>'Bulletins', 'action'=>'view', $bulletin->id]) ?></td>
+                                <td class="date"><?= h($bulletin->created) ?></td>
+                            </tr>
+                        <?php else : ?>
+                            <tr>
+                                <td>お知らせはありません</td>
+                                <td>a</td>
+                                <?php break; ?>
+                            </tr>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+            </tbody>
+        </table>
+    </div>
+    <!-- <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->first('<< ' . __('first')) ?>
             <?= $this->Paginator->prev('< ' . __('previous')) ?>
@@ -53,5 +52,5 @@
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
+    </div> -->
 </div>
