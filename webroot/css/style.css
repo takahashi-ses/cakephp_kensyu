@@ -559,5 +559,8 @@ textarea {
 }
 .message-td {
     font-size: 21px;
-    background-color:seashell
+    background-color:seashell;
+}
+.chat-body::-webkit-scrollbar {
+    display: none;
 }

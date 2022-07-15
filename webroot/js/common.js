@@ -1,3 +1,4 @@
+/* 勤怠入力画面で時刻を表示 */
 function showDate() {
   let dateObj   = new Date();
   let dateYear  = dateObj.getFullYear();
@@ -27,3 +28,11 @@ function showClock() {
 }
 setInterval('showDate()',1000);
 setInterval('showClock()',1000);
+
+/* チャットページに移動した際、ページ下部を表示する */
+window.addEventListener('DOMContentLoaded', ()=>{
+  let target = document.querySelector('#scroll-inner');
+  target.scrollIntoView(false);
+});
+
+

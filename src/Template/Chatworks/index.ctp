@@ -27,29 +27,31 @@
 <div class="chatworks index large-9 medium-8 columns">
     <div class="chat-body">
         <?= $this->Flash->render() ?>
-        <?php foreach ($chatworks as $chat): ?>
-            <table>
-                <tbody>
-                <?php if ($user->id == $chat->users_id) : ?>
-                    <tr class="self-td">
+        <div  id="scroll-inner">
+            <?php foreach ($chatworks as $chat): ?>
+                <table>
+                    <tbody>
+                        <?php if ($user->id == $chat->users_id) : ?>
+                            <tr class="self-td">
                 <?php else : ?>
                     <tr class="others-td">
-                <?php endif; ?>
+                        <?php endif; ?>
                         <td><?= h($chat->user->name) ?></td>
                         <td class="action-td">
                             <?php if ($user->id == $chat->users_id) : ?>
                                 <?= $this->Html->link(__('Edit'), ['action' => 'edit', $chat->id]) ?>&nbsp;
                                 <?= $this->Form->postLink(__('Delete'), ['action' => 'delete',$chat->id],['confirm' => __('Are you sure you want to delete # {0}?',$chat->id)]) ?>
-                            <?php endif; ?>
-                            &nbsp;&nbsp;<?= h($chat->created) ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="message-td"><?= h($chat->message) ?></td>
-                    </tr>
-                </tbody>
-            </table>
-        <?php endforeach; ?>
+                                <?php endif; ?>
+                                &nbsp;&nbsp;<?= h($chat->created) ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="message-td" id="message-ajax"><?= h($chat->message) ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+            <?php endforeach; ?>
+        </div>
     </div>
 
 
