@@ -4,6 +4,8 @@
  * @var \App\Model\Entity\Chatwork[]|\Cake\Collection\CollectionInterface $chatworks
  */
 ?>
+<?= $this->Html->script('chat_index.js') ?>
+
 <?php $id = $this->request->session()->read("Auth.User.id"); ?>
 
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
@@ -25,8 +27,8 @@
     </ul>
 </nav>
 <div class="chatworks index large-9 medium-8 columns">
+    <?= $this->Flash->render() ?>
     <div class="chat-body">
-        <?= $this->Flash->render() ?>
         <div  id="scroll-inner">
             <?php foreach ($chatworks as $chat): ?>
                 <table>
@@ -46,7 +48,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2" class="message-td" id="message-ajax"><?= h($chat->message) ?></td>
+                            <td colspan="2" class="message-td"><?= h($chat->message) ?></td>
                         </tr>
                     </tbody>
                 </table>

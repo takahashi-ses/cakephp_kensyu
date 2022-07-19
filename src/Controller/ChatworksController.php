@@ -17,15 +17,20 @@ class ChatworksController extends AppController
 
         // var_dump($user['id']);
         $action = $this->request->getParam("action");
-        $userid = (int)$this->request->getParam("pass.0");
+        $userid = $this->Chatworks->find();
+
         if (in_array($action, ["index"])) {
             return true;
         }
+
         if (in_array($action, ["edit", "delete"])) {
-            if ($userid == $user["id"]) {
-                return true;
+            foreach ($userid as $id) {
+                if ($id['users_id'] == $user["id"]) {
+                    return true;
+                }
             }
         }
+
         return parent::isAuthorized($user);
     }
     /**
@@ -48,7 +53,8 @@ class ChatworksController extends AppController
             $this->Flash->error(__('The chatwork could not be saved. Please, try again.'));
         }
 
-        $chatworks = $this->paginate($this->Chatworks);
+        // $chatworks = $this->paginate($this->Chatworks);
+        $chatworks = $this->Chatworks->find('all')->contain(['Users']);
 
         $account = $this->request->session()->read('Auth.User.account');
         $this->Users = $this->loadModel('Users');

@@ -50,7 +50,7 @@
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $report->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $report->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $report->id],    ['confirm' => __('Are you sure you want to delete # {0}?', $report->id)]) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $report->id], ['confirm' => __('Are you sure you want to delete # {0}?', $report->id)]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -60,9 +60,9 @@
                         <td><?= h($myReport->comment) ?></td>
                         <td><?= h($myReport->created) ?></td>
                         <td class="actions">
-                            <?= $this->Html->link(__('View'), ['action' => 'view',  $myReport->id]) ?>
-                            <?= $this->Html->link(__('Edit'), ['action' => 'edit',  $myReport->id]) ?>
-                            <?= $this->Form->postLink(__('Delete'), ['action' =>    'delete', $myReport->id],    ['confirm' => __('Are you sureyou want to delete # {0}?', $myReport->id)]) ?>
+                            <?= $this->Html->link(__('View'), ['action' => 'view', $myReport->id]) ?>
+                            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $myReport->id]) ?>
+                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $myReport->id], ['confirm' => __('Are you sureyou want to delete # {0}?', $myReport->id)]) ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

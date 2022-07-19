@@ -3,6 +3,8 @@ var_dump($id); echo '<br>';
 var_dump($rosters);
 ?> -->
 
+<?= $this->Html->script('stamp.js') ?>
+
 <?php $id = $this->request->session()->read("Auth.User.id"); ?>
 
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
