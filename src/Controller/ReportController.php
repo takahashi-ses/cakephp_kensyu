@@ -18,13 +18,24 @@ class ReportController extends AppController
 
         // var_dump($user);
         $action = $this->request->getParam("action");
-        $userid = (int)$this->request->getParam("pass.0");
+        $id = (int)$this->request->getParam("pass.0");
+        $userid = $this->Report->find();
+
         if (in_array($action, ["index"])) {
             return true;
         }
-        if (in_array($action, ["edit", "view", "delete", "add"])) {
-            if ($userid == $user["id"]) {
+
+        if (in_array($action, ["add"])) {
+            if ($id == $user["id"]) {
                 return true;
+            }
+        }
+        
+        if (in_array($action, ["edit", "view", "delete"])) {
+            foreach ($userid as $id) {
+                if ($id['user_id'] == $user["id"]) {
+                    return true;
+                }
             }
         }
         return parent::isAuthorized($user);

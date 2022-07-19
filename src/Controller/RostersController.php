@@ -241,7 +241,8 @@ class RostersController extends AppController
             }
 
         }
-        $rosters = $this->paginate($this->Rosters->find('all')->where(['users_id' => $id])->limit('5'));
+        $rosters = $this->paginate($this->Rosters->find('all')->order(['id' => "DESC"])->limit('5')->where(['users_id' => $id]));
+        // $rosters = $this->Rosters->find('all')->contain(['Users'])->order(['users_id' => "DESC"])->limit('5')->where(['users_id' => $id]);
         $this->set(compact('rosters', 'id'));
         // var_dump($rosters);
     }

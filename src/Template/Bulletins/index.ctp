@@ -1,11 +1,10 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\User[]|\Cake\Collection\CollectionInterface $users
+ * @var \App\Model\Entity\Bulletin[]|\Cake\Collection\CollectionInterface $bulletins
  */
 ?>
 <?php $id = $this->request->session()->read("Auth.User.id"); ?>
-
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
 <ul class="side-nav">
         <li class="heading"><?= __('メニュー') ?></li>
@@ -21,50 +20,31 @@
         <li><?= $this->Html->link(__('業務報告書確認'), ['controller' => 'Report', 'action' => "index/$id"]) ?></li>
         <li><?= $this->Html->link(__('従業員情報'), ['controller' => 'users', 'action' => "view/$id"]) ?></li>
         <li><?= $this->Html->link(__('従業員情報変更'), ['controller' => 'users', 'action' => "edit/$id"]) ?></li>
-        <li><?= $this->Html->link(__('チャット'), ['controller' => 'chatworks', 'action' => "index"]) ?></li>
     </ul>
 </nav>
-<div class="users index large-9 medium-8 columns content">
-    <h3><?= __('Users') ?></h3>
+<div class="bulletins index large-9 medium-8 columns content">
+    <h3><?= __('Bulletins') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('account') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('password') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('email') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('tel') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('zipcode') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('address') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('title') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('text') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created_user') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified_user') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('role') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($users as $user): ?>
+            <?php foreach ($bulletins as $bulletin): ?>
             <tr>
-                <td><?= $this->Number->format($user->id) ?></td>
-                <td><?= h($user->account) ?></td>
-                <td><?= h($user->password) ?></td>
-                <td><?= h($user->name) ?></td>
-                <td><?= h($user->email) ?></td>
-                <td><?= h($user->tel) ?></td>
-                <td><?= h($user->zipcode) ?></td>
-                <td><?= h($user->address) ?></td>
-                <td><?= h($user->created) ?></td>
-                <td><?= h($user->modified) ?></td>
-                <td><?= h($user->created_user) ?></td>
-                <td><?= h($user->modified_user) ?></td>
-                <td><?= $this->Number->format($user->role) ?></td>
+                <td><?= $this->Number->format($bulletin->id) ?></td>
+                <td><?= h($bulletin->title) ?></td>
+                <td><?= h($bulletin->text) ?></td>
+                <td><?= h($bulletin->created) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $bulletin->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $bulletin->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $bulletin->id], ['confirm' => __('Are you sure you want to delete # {0}?', $bulletin->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

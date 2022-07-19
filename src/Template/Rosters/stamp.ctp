@@ -3,6 +3,8 @@ var_dump($id); echo '<br>';
 var_dump($rosters);
 ?> -->
 
+<?= $this->Html->script('stamp.js') ?>
+
 <?php $id = $this->request->session()->read("Auth.User.id"); ?>
 
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
@@ -20,6 +22,7 @@ var_dump($rosters);
         <li><?= $this->Html->link(__('業務報告書確認'), ['controller' => 'Report', 'action' => "index/$id"]) ?></li>
         <li><?= $this->Html->link(__('従業員情報'), ['controller' => 'users', 'action' => "view/$id"]) ?></li>
         <li><?= $this->Html->link(__('従業員情報変更'), ['controller' => 'users', 'action' => "edit/$id"]) ?></li>
+        <li><?= $this->Html->link(__('チャット'), ['controller' => 'chatworks', 'action' => "index"]) ?></li>
     </ul>
 </nav>
 

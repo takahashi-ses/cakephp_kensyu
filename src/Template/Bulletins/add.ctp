@@ -1,11 +1,10 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Chatwork $chatwork
+ * @var \App\Model\Entity\Bulletin $bulletin
  */
 ?>
 <?php $id = $this->request->session()->read("Auth.User.id"); ?>
-
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
 <ul class="side-nav">
         <li class="heading"><?= __('メニュー') ?></li>
@@ -21,24 +20,20 @@
         <li><?= $this->Html->link(__('業務報告書確認'), ['controller' => 'Report', 'action' => "index/$id"]) ?></li>
         <li><?= $this->Html->link(__('従業員情報'), ['controller' => 'users', 'action' => "view/$id"]) ?></li>
         <li><?= $this->Html->link(__('従業員情報変更'), ['controller' => 'users', 'action' => "edit/$id"]) ?></li>
-        <li><?= $this->Html->link(__('チャット'), ['controller' => 'chatworks', 'action' => "index"]) ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $chatwork->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $chatwork->id)]
-            )
-        ?></li>
     </ul>
 </nav>
-
-<div class="chatworks form large-9 medium-8 columns content">
-    <?= $this->Form->create($chatwork) ?>
+<div class="bulletins form large-9 medium-8 columns content">
+    <?= $this->Form->create($bulletin) ?>
     <fieldset>
-        <legend><?= __('Edit Chatwork') ?></legend>
+        <legend><?= __('Add Bulletin') ?></legend>
         <?php
-            echo "報告者 : " . $users->name;
-            echo $this->Form->hidden('user_id', ['value' => $users->id]);
-            echo $this->Form->textarea('message');
+            echo $this->Form->control('title',[
+                'label'=>'タイトル'
+            ]);
+            echo $this->Form->control('text',[
+                'type'=>'textarea',
+                'label'=>'本文'
+            ]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

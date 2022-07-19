@@ -408,7 +408,7 @@ msgstr "従業員追加"
 #: Template/Users/edit.ctp:24
 #: Template/Users/view.ctp:10
 msgid "Edit User"
-msgstr "従業員変更"
+msgstr "従業員情報変更"
 
 #: Template/Users/list.ctp:27
 msgid "Users"
@@ -763,4 +763,7 @@ msgstr "11月"
 #: View/Widget/DateTimeWidget.php:550
 msgid "December"
 msgstr "12月"
+
+msgid "title"
+msgstr "タイトル"
 

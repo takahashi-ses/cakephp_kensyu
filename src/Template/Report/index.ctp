@@ -22,6 +22,7 @@
         <li><?= $this->Html->link(__('業務報告書確認'), ['controller' => 'Report', 'action' => "index/$id"]) ?></li>
         <li><?= $this->Html->link(__('従業員情報'), ['controller' => 'users', 'action' => "view/$id"]) ?></li>
         <li><?= $this->Html->link(__('従業員情報変更'), ['controller' => 'users', 'action' => "edit/$id"]) ?></li>
+        <li><?= $this->Html->link(__('チャット'), ['controller' => 'chatworks', 'action' => "index"]) ?></li>
     </ul>
 </nav>
 <div class="report index large-9 medium-8 columns content">
@@ -49,7 +50,7 @@
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $report->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $report->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $report->id],    ['confirm' => __('Are you sure you want to delete # {0}?', $report->id)]) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $report->id], ['confirm' => __('Are you sure you want to delete # {0}?', $report->id)]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -59,9 +60,9 @@
                         <td><?= h($myReport->comment) ?></td>
                         <td><?= h($myReport->created) ?></td>
                         <td class="actions">
-                            <?= $this->Html->link(__('View'), ['action' => 'view',  $myReport->id]) ?>
-                            <?= $this->Html->link(__('Edit'), ['action' => 'edit',  $myReport->id]) ?>
-                            <?= $this->Form->postLink(__('Delete'), ['action' =>    'delete', $myReport->id],    ['confirm' => __('Are you sureyou want to delete # {0}?', $myReport->id)]) ?>
+                            <?= $this->Html->link(__('View'), ['action' => 'view', $myReport->id]) ?>
+                            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $myReport->id]) ?>
+                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $myReport->id], ['confirm' => __('Are you sureyou want to delete # {0}?', $myReport->id)]) ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

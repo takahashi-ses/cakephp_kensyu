@@ -15,17 +15,22 @@ class ChatworksController extends AppController
     public function isAuthorized($user) {
 
 
-        // var_dump($user);
+        // var_dump($user['id']);
         $action = $this->request->getParam("action");
-        $userid = (int)$this->request->getParam("pass.0");
+        $userid = $this->Chatworks->find();
+
         if (in_array($action, ["index"])) {
             return true;
         }
+
         if (in_array($action, ["edit", "delete"])) {
-            if ($userid == $user["id"]) {
-                return true;
+            foreach ($userid as $id) {
+                if ($id['users_id'] == $user["id"]) {
+                    return true;
+                }
             }
         }
+
         return parent::isAuthorized($user);
     }
     /**
@@ -48,7 +53,8 @@ class ChatworksController extends AppController
             $this->Flash->error(__('The chatwork could not be saved. Please, try again.'));
         }
 
-        $chatworks = $this->paginate($this->Chatworks);
+        // $chatworks = $this->paginate($this->Chatworks);
+        $chatworks = $this->Chatworks->find('all')->contain(['Users']);
 
         $account = $this->request->session()->read('Auth.User.account');
         $this->Users = $this->loadModel('Users');
@@ -64,35 +70,35 @@ class ChatworksController extends AppController
      * @return \Cake\Http\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
-    {
-        $chatwork = $this->Chatworks->get($id, [
-            'contain' => ['Users'],
-        ]);
+    // public function view($id = null)
+    // {
+    //     $chatwork = $this->Chatworks->get($id, [
+    //         'contain' => ['Users'],
+    //     ]);
 
-        $this->set('chatwork', $chatwork);
-    }
+    //     $this->set('chatwork', $chatwork);
+    // }
 
     /**
      * Add method
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
-    {
-        $chatwork = $this->Chatworks->newEntity();
-        if ($this->request->is('post')) {
-            $chatwork = $this->Chatworks->patchEntity($chatwork, $this->request->getData());
-            if ($this->Chatworks->save($chatwork)) {
-                $this->Flash->success(__('The chatwork has been saved.'));
+    // public function add()
+    // {
+    //     $chatwork = $this->Chatworks->newEntity();
+    //     if ($this->request->is('post')) {
+    //         $chatwork = $this->Chatworks->patchEntity($chatwork, $this->request->getData());
+    //         if ($this->Chatworks->save($chatwork)) {
+    //             $this->Flash->success(__('The chatwork has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The chatwork could not be saved. Please, try again.'));
-        }
-        $users = $this->Chatworks->Users->find('list', ['limit' => 200]);
-        $this->set(compact('chatwork', 'users'));
-    }
+    //             return $this->redirect(['action' => 'index']);
+    //         }
+    //         $this->Flash->error(__('The chatwork could not be saved. Please, try again.'));
+    //     }
+    //     $users = $this->Chatworks->Users->find('list', ['limit' => 200]);
+    //     $this->set(compact('chatwork', 'users'));
+    // }
 
     /**
      * Edit method
